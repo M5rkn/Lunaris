@@ -1,0 +1,16 @@
+{
+  "name": "lunaris-portfolio",
+  "version": "1.0.0",
+  "description": "Lunaris Portfolio Website",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["portfolio", "web-developer"],
+  "author": "Lunaris",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

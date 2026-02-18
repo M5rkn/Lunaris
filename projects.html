@@ -1,0 +1,1793 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Проекты | Lunaris</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Проекты Lunaris — избранные работы: веб-приложения, Telegram-боты, лендинги">
+    <meta name="keywords" content="проекты, портфолио, веб-приложения, Telegram боты, лендинги">
+    <meta name="author" content="Lunaris">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0d0d1a">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourdomain.com/projects.html">
+    <meta property="og:title" content="Проекты | Lunaris">
+    <meta property="og:description" content="Избранные работы, которыми я горжусь">
+    <meta property="og:image" content="https://yourdomain.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Lunaris">
+    <meta property="og:locale" content="ru_RU">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://yourdomain.com/projects.html">
+    <meta name="twitter:title" content="Проекты | Lunaris">
+    <meta name="twitter:description" content="Избранные работы, которыми я горжусь">
+    <meta name="twitter:image" content="https://yourdomain.com/twitter-image.png">
+    <meta name="twitter:creator" content="@yourusername">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='80' font-size='80'>🌙</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Lenis для плавного скролла -->
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            overflow-x: hidden;
+        }
+
+        html, body {
+            height: auto;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        body {
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0d0d1a 0%, #1a1a2e 50%, #16213e 100%);
+            min-height: 100vh;
+            color: #fff;
+            cursor: none;
+        }
+
+        /* Кастомный курсор */
+        .cursor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background: #a855f7;
+            border-radius: 50%;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 10px #a855f7, 0 0 20px #a855f7;
+        }
+
+        .cursor-circle {
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(168, 85, 247, 0.5);
+            border-radius: 50%;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s, border-color 0.2s;
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.3);
+        }
+
+        .cursor-circle.hover {
+            width: 60px;
+            height: 60px;
+            border-color: #ec4899;
+            box-shadow: 0 0 25px rgba(236, 72, 153, 0.5);
+        }
+
+        .cursor-trail {
+            width: 6px;
+            height: 6px;
+            background: rgba(168, 85, 247, 0.6);
+            border-radius: 50%;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            animation: fadeOut 0.5s forwards;
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.5);
+            }
+        }
+
+        @media (hover: none) and (pointer: coarse) {
+            .cursor {
+                display: none;
+            }
+            body {
+                cursor: auto;
+            }
+        }
+
+        /* Переключатель языков */
+        .lang-switcher {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            z-index: 1000;
+            display: flex;
+            gap: 6px;
+        }
+
+        .lang-btn {
+            padding: 8px 14px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: rgba(255, 255, 255, 0.5);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .lang-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .lang-btn.active {
+            background: linear-gradient(135deg, #a855f7, #ec4899);
+            border-color: transparent;
+            color: #fff;
+        }
+
+        /* Футер */
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .footer-tagline {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .footer-copyright {
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.75rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            line-height: 1.8;
+        }
+
+        /* Горизонтальная секция с шагами */
+        .steps-section {
+            position: relative;
+            z-index: 10;
+            min-height: 100vh;
+        }
+
+        .steps-wrapper {
+            width: 100%;
+            height: auto;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow-x: hidden;
+            overflow-y: visible;
+        }
+
+        .steps-inner {
+            display: flex;
+            width: 100%;
+        }
+
+        .step-item {
+            flex: 0 0 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 60px;
+            padding: 60px 10vw;
+            min-height: 100vh;
+        }
+
+        .step-item-icon {
+            width: 120px;
+            height: 120px;
+            min-width: 120px;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(236, 72, 153, 0.2));
+            border-radius: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(168, 85, 247, 0.3);
+            box-shadow: 0 20px 60px rgba(168, 85, 247, 0.2);
+        }
+
+        .step-item-icon svg {
+            width: 64px;
+            height: 64px;
+            stroke: url(#gradient-stroke);
+            fill: none;
+            stroke-width: 1.5;
+        }
+
+        .step-item-content {
+            max-width: 500px;
+        }
+
+        .step-item-content h3 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #a855f7, #ec4899, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+            letter-spacing: -2px;
+        }
+
+        .step-item-content p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.15rem;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        .steps-nav {
+            position: absolute;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 16px;
+        }
+
+        .steps-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border: 2px solid transparent;
+        }
+
+        .steps-dot.active {
+            background: transparent;
+            border-color: #a855f7;
+            transform: scale(1.3);
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+        }
+
+        .steps-dot:hover {
+            background: rgba(168, 85, 247, 0.4);
+        }
+
+        /* Футер */
+        .footer-section {
+            position: relative;
+            z-index: 10;
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 80px 40px 40px;
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+        }
+
+        .footer-big-text {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+
+        .big-text-item {
+            font-size: 12vw;
+            font-weight: 900;
+            letter-spacing: -8px;
+            color: rgba(255, 255, 255, 0.03);
+            cursor: default;
+            transition: color 0.3s ease;
+            position: relative;
+            white-space: nowrap;
+        }
+
+        .big-text-item:hover {
+            color: rgba(168, 85, 247, 0.15);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 16px;
+        }
+
+        .social-link-footer {
+            width: 56px;
+            height: 56px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-link-footer:hover {
+            background: rgba(168, 85, 247, 0.15);
+            border-color: rgba(168, 85, 247, 0.4);
+            color: #fff;
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.2);
+        }
+
+        .footer-copyright {
+            text-align: right;
+        }
+
+        .footer-copyright p {
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            line-height: 1.8;
+        }
+
+        .footer-copyright p:first-child {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        /* Адаптивность для футера */
+        @media (max-width: 768px) {
+            .footer-content {
+                flex-direction: column;
+                align-items: center;
+                gap: 30px;
+            }
+
+            .footer-social {
+                order: 2;
+            }
+
+            .footer-copyright {
+                order: 1;
+                text-align: center;
+            }
+
+            .big-text-item {
+                font-size: 18vw;
+                letter-spacing: -4px;
+            }
+        }
+
+        /* Адаптивность для проектов */
+        @media (max-width: 1200px) {
+            .projects {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .projects {
+                grid-template-columns: 1fr;
+                padding: 40px 4vw 80px;
+            }
+
+            .step-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 30px;
+            }
+
+            .step-item-content h3 {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Фоновые эффекты */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            transform: translateZ(-1px) scale(2);
+        }
+
+        .star {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            animation: twinkle var(--duration) ease-in-out infinite;
+            opacity: var(--opacity);
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: var(--opacity); transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        .glow-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 0;
+            opacity: 0.4;
+            animation: orbFloat 8s ease-in-out infinite;
+        }
+
+        .glow-orb-1 {
+            width: 300px;
+            height: 300px;
+            background: #a855f7;
+            top: -100px;
+            right: -100px;
+        }
+
+        .glow-orb-2 {
+            width: 250px;
+            height: 250px;
+            background: #ec4899;
+            bottom: -80px;
+            left: -80px;
+            animation-delay: -4s;
+        }
+
+        @keyframes orbFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(30px, -30px) scale(1.1); }
+        }
+
+        /* Кнопка «наверх» */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #a855f7, #ec4899);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            z-index: 10000;
+            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.4);
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(168, 85, 247, 0.6);
+        }
+
+        .scroll-to-top:active {
+            transform: scale(0.95);
+        }
+
+        .scroll-to-top svg {
+            width: 24px;
+            height: 24px;
+            stroke: #fff;
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            pointer-events: none;
+        }
+
+        /* Навигация */
+        .nav {
+            position: relative;
+            z-index: 10;
+            padding: 24px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #a855f7, #ec4899, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .nav-back {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 24px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-back:hover {
+            background: rgba(168, 85, 247, 0.2);
+            border-color: rgba(168, 85, 247, 0.4);
+            color: #fff;
+        }
+
+        .nav-back svg {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-back:hover svg {
+            transform: translateX(-5px);
+        }
+
+        /* Заголовок */
+        .header {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 60px 20px 40px;
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #a855f7, #ec4899, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+            letter-spacing: 2px;
+        }
+
+        .header p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        /* Фильтры */
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 32px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 14px 28px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            color: rgba(255, 255, 255, 0.6);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .filter-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(236, 72, 153, 0.2));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .filter-btn:hover {
+            border-color: rgba(168, 85, 247, 0.5);
+            color: #fff;
+        }
+
+        .filter-btn:hover::before {
+            opacity: 1;
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, #a855f7, #ec4899);
+            border-color: transparent;
+            color: #fff;
+            box-shadow: 
+                0 4px 20px rgba(168, 85, 247, 0.4),
+                0 0 40px rgba(236, 72, 153, 0.2);
+        }
+
+        .filter-btn.active::before {
+            opacity: 1;
+        }
+
+        /* Анимация фильтрации */
+        .project-card.hidden {
+            display: none;
+        }
+
+        .project-card.fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Сетка проектов */
+        .projects {
+            position: relative;
+            z-index: 10;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 40px 2vw 80px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .project-card {
+            padding: 40px 32px;
+            transition: all 0.3s ease;
+            animation: cardAppear 0.6s ease-out backwards;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .project-card:nth-child(1) { animation-delay: 0.1s; }
+        .project-card:nth-child(2) { animation-delay: 0.2s; }
+        .project-card:nth-child(3) { animation-delay: 0.3s; }
+        .project-card:nth-child(4) { animation-delay: 0.4s; }
+        .project-card:nth-child(5) { animation-delay: 0.5s; }
+        .project-card:nth-child(6) { animation-delay: 0.6s; }
+
+        @keyframes cardAppear {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+        }
+
+        /* Анимация появления при скролле */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .project-icon {
+            width: 72px;
+            height: 72px;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(236, 72, 153, 0.15));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover .project-icon {
+            background: linear-gradient(135deg, #a855f7, #ec4899);
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.3);
+        }
+
+        .project-icon svg {
+            width: 36px;
+            height: 36px;
+        }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+
+        .project-card p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .project-section {
+            margin-bottom: 16px;
+        }
+
+        .project-section-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .project-section-text {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.88rem;
+            line-height: 1.5;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            padding: 5px 12px;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 6px;
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .project-link.primary {
+            background: linear-gradient(135deg, #a855f7, #ec4899);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3);
+        }
+
+        .project-link.primary:hover {
+            box-shadow: 0 8px 25px rgba(168, 85, 247, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .project-link.secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .project-link.secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .project-link svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .project-link.secondary svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .nav {
+                padding: 20px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .projects {
+                grid-template-columns: 1fr;
+                padding: 20px 20px 60px;
+            }
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .lang-switcher {
+                top: auto;
+                bottom: 20px;
+                right: 50%;
+                transform: translateX(50%);
+                background: rgba(0, 0, 0, 0.5);
+                backdrop-filter: blur(10px);
+                padding: 8px 12px;
+                border-radius: 20px;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .nav {
+                padding: 20px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .projects {
+                grid-template-columns: 1fr;
+                padding: 20px 20px 60px;
+            }
+
+            .scroll-to-top {
+                bottom: 80px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+            }
+
+            .scroll-to-top svg {
+                width: 20px;
+                height: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Фоновые эффекты -->
+    <div class="stars" id="stars"></div>
+    <div class="glow-orb glow-orb-1"></div>
+    <div class="glow-orb glow-orb-2"></div>
+
+    <!-- Кастомный курсор -->
+    <div class="cursor">
+        <div class="cursor-dot"></div>
+        <div class="cursor-circle"></div>
+    </div>
+
+    <!-- Кнопка «наверх» -->
+    <button class="scroll-to-top" id="scrollToTop" aria-label="Наверх">
+        <svg viewBox="0 0 24 24">
+            <path d="M12 19V5M5 12l7-7 7 7"/>
+        </svg>
+    </button>
+
+    <!-- Переключатель языков -->
+    <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="ru">RU</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="de">DE</button>
+        <button class="lang-btn" data-lang="uk">UK</button>
+    </div>
+
+    <!-- Навигация -->
+    <nav class="nav">
+        <a href="index.html" class="nav-logo">Lunaris</a>
+        <a href="index.html" class="nav-back">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            <span data-ru="Назад" data-en="Back" data-de="Zurück" data-uk="Назад">Назад</span>
+        </a>
+    </nav>
+
+    <!-- Заголовок -->
+    <header class="header">
+        <h1 data-ru="Проекты" data-en="Projects" data-de="Projekte" data-uk="Проєкти">Проекты</h1>
+        <p data-ru="Избранные работы, которыми я горжусь" data-en="Selected works I'm proud of" data-de="Ausgewählte Arbeiten, auf die ich stolz bin" data-uk="Вибрані роботи, якими я пишаюся">Избранные работы, которыми я горжусь</p>
+
+        <!-- Фильтры -->
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all" data-ru="Все" data-en="All" data-de="Alle" data-uk="Всі">Все</button>
+            <button class="filter-btn" data-filter="web" data-ru="Web Apps" data-en="Web Apps" data-de="Web Apps" data-uk="Web Apps">Web Apps</button>
+            <button class="filter-btn" data-filter="bot" data-ru="Telegram Bots" data-en="Telegram Bots" data-de="Telegram Bots" data-uk="Telegram Bots">Telegram Bots</button>
+            <button class="filter-btn" data-filter="landing" data-ru="Landings" data-en="Landings" data-de="Landings" data-uk="Landings">Landings</button>
+        </div>
+    </header>
+
+    <!-- Проекты -->
+    <main class="projects">
+        <!-- Проект 1 - Bot -->
+        <div class="project-card" data-category="bot">
+            <div class="project-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="11" width="18" height="10" rx="2"/>
+                    <circle cx="12" cy="5" r="2"/>
+                    <path d="M12 7v4"/>
+                    <line x1="8" y1="16" x2="8" y2="16"/>
+                    <line x1="16" y1="16" x2="16" y2="16"/>
+                </svg>
+            </div>
+            <h3 data-ru="Task Manager Bot" data-en="Task Manager Bot" data-de="Task Manager Bot" data-uk="Task Manager Bot">Task Manager Bot</h3>
+            <p data-ru="Многофункциональный бот для управления задачами с интеграцией Google Calendar и напоминаниями." data-en="Multi-functional bot for task management with Google Calendar integration and reminders." data-de="Multifunktionaler Bot zur Aufgabenverwaltung mit Google Calendar-Integration und Erinnerungen." data-uk="Багатофункціональний бот для управління завданнями з інтеграцією Google Calendar і нагадуваннями.">Многофункциональный бот для управления задачами с интеграцией Google Calendar и напоминаниями.</p>
+            <div class="project-section">
+                <div class="project-section-title" data-ru="Idea" data-en="Idea" data-de="Idee" data-uk="Ідея">Idea</div>
+                <div class="project-section-text" data-ru="Автоматизировать управление задачами через Telegram с синхронизацией календаря" data-en="Automate task management via Telegram with calendar synchronization" data-de="Aufgabenverwaltung über Telegram mit Kalender-Synchronisation automatisieren" data-uk="Автоматизувати управління завданнями через Telegram з синхронізацією календаря">Автоматизировать управление задачами через Telegram с синхронизацией календаря</div>
+            </div>
+            <div class="project-section">
+                <div class="project-section-title" data-ru="Tech Stack" data-en="Tech Stack" data-de="Tech Stack" data-uk="Tech Stack">Tech Stack</div>
+                <div class="project-section-text" data-ru="Python 3.11, Aiogram 3.x, Google Calendar API, SQLite, Redis" data-en="Python 3.11, Aiogram 3.x, Google Calendar API, SQLite, Redis" data-de="Python 3.11, Aiogram 3.x, Google Calendar API, SQLite, Redis" data-uk="Python 3.11, Aiogram 3.x, Google Calendar API, SQLite, Redis">Python 3.11, Aiogram 3.x, Google Calendar API, SQLite, Redis</div>
+            </div>
+            <div class="project-tags">
+                <span class="tag" data-ru="Python" data-en="Python" data-de="Python" data-uk="Python">Python</span>
+                <span class="tag" data-ru="Aiogram" data-en="Aiogram" data-de="Aiogram" data-uk="Aiogram">Aiogram</span>
+                <span class="tag" data-ru="SQLite" data-en="SQLite" data-de="SQLite" data-uk="SQLite">SQLite</span>
+            </div>
+            <div class="project-links">
+                <a href="#" class="project-link primary" data-ru="Демо" data-en="Demo" data-de="Demo" data-uk="Демо">Демо</a>
+                <a href="https://github.com/M5rkn/TaskManager" target="_blank" class="project-link secondary">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                    GitHub
+                </a>
+            </div>
+        </div>
+
+        <!-- Проект 2 - Web -->
+        <div class="project-card" data-category="web">
+            <div class="project-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="9" cy="21" r="1"/>
+                    <circle cx="20" cy="21" r="1"/>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                </svg>
+            </div>
+            <h3 data-ru="Интернет-магазин" data-en="Online Store" data-de="Online-Shop" data-uk="Інтернет-магазин">Интернет-магазин</h3>
+            <p data-ru="Современный интернет-магазин с корзиной, оплатой и админ-панелью для управления товарами." data-en="Modern online store with cart, payment, and admin panel for product management." data-de="Moderner Online-Shop mit Warenkorb, Zahlung und Admin-Panel für die Produktverwaltung." data-uk="Сучасний інтернет-магазин з кошиком, оплатою та адмін-панеллю для управління товарами.">Современный интернет-магазин с корзиной, оплатой и админ-панелью для управления товарами.</p>
+            <div class="project-section">
+                <div class="project-section-title" data-ru="Idea" data-en="Idea" data-de="Idee" data-uk="Ідея">Idea</div>
+                <div class="project-section-text" data-ru="Создать полноценную e-commerce платформу с удобным управлением товарами" data-en="Create a full-featured e-commerce platform with easy product management" data-de="Eine vollwertige E-Commerce-Plattform mit einfacher Produktverwaltung erstellen" data-uk="Створити повноцінну e-commerce платформу з зручним управлінням товарами">Создать полноценную e-commerce платформу с удобным управлением товарами</div>
+            </div>
+            <div class="project-section">
+                <div class="project-section-title" data-ru="Tech Stack" data-en="Tech Stack" data-de="Tech Stack" data-uk="Tech Stack">Tech Stack</div>
+                <div class="project-section-text" data-ru="React 18, Node.js, Express, MongoDB, Stripe API" data-en="React 18, Node.js, Express, MongoDB, Stripe API" data-de="React 18, Node.js, Express, MongoDB, Stripe API" data-uk="React 18, Node.js, Express, MongoDB, Stripe API">React 18, Node.js, Express, MongoDB, Stripe API</div>
+            </div>
+            <div class="project-tags">
+                <span class="tag" data-ru="React" data-en="React" data-de="React" data-uk="React">React</span>
+                <span class="tag" data-ru="Node.js" data-en="Node.js" data-de="Node.js" data-uk="Node.js">Node.js</span>
+                <span class="tag" data-ru="MongoDB" data-en="MongoDB" data-de="MongoDB" data-uk="MongoDB">MongoDB</span>
+            </div>
+            <div class="project-links">
+                <a href="#" class="project-link primary" data-ru="Сайт" data-en="Website" data-de="Website" data-uk="Сайт">Сайт</a>
+                <a href="https://github.com/M5rkn/shop" target="_blank" class="project-link secondary">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                    GitHub
+                </a>
+            </div>
+        </div>
+
+        <!-- Проект 3 - Web -->
+        <div class="project-card" data-category="web">
+            <div class="project-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="20" x2="18" y2="10"/>
+                    <line x1="12" y1="20" x2="12" y2="4"/>
+                    <line x1="6" y1="20" x2="6" y2="14"/>
+                </svg>
+            </div>
+            <h3 data-ru="Дашборд аналитики" data-en="Analytics Dashboard" data-de="Analytics-Dashboard" data-uk="Дашборд аналітики">Дашборд аналитики</h3>
+            <p data-ru="Панель управления для визуализации данных с графиками и экспортом отчётов." data-en="Control panel for data visualization with charts and report export." data-de="Bedienfeld zur Datenvisualisierung mit Diagrammen und Berichtsexport." data-uk="Панель керування для візуалізації даних з графіками та експортом звітів.">Панель управления для визуализации данных с графиками и экспортом отчётов.</p>
+            <div class="project-section">
+                <div class="project-section-title" data-ru="Idea" data-en="Idea" data-de="Idee" data-uk="Ідея">Idea</div>
+                <div class="project-section-text" data-ru="Предоставить удобный инструмент для мониторинга метрик и генерации отчётов" data-en="Provide a convenient tool for monitoring metrics and generating reports" data-de="Ein praktisches Tool zur Überwachung von Metriken und Erstellung von Berichten bereitstellen" data-uk="Надати зручний інструмент для моніторингу метрик і генерації звітів">Предоставить удобный инструмент для мониторинга метрик и генерации отчётов</div>
+            </div>
+            <div class="project-section">
+                <div class="project-section-title" data-ru="Tech Stack" data-en="Tech Stack" data-de="Tech Stack" data-uk="Tech Stack">Tech Stack</div>
+                <div class="project-section-text" data-ru="Vue.js 3, Chart.js, Firebase, Vuetify" data-en="Vue.js 3, Chart.js, Firebase, Vuetify" data-de="Vue.js 3, Chart.js, Firebase, Vuetify" data-uk="Vue.js 3, Chart.js, Firebase, Vuetify">Vue.js 3, Chart.js, Firebase, Vuetify</div>
+            </div>
+            <div class="project-tags">
+                <span class="tag" data-ru="Vue.js" data-en="Vue.js" data-de="Vue.js" data-uk="Vue.js">Vue.js</span>
+                <span class="tag" data-ru="Chart.js" data-en="Chart.js" data-de="Chart.js" data-uk="Chart.js">Chart.js</span>
+                <span class="tag" data-ru="Firebase" data-en="Firebase" data-de="Firebase" data-uk="Firebase">Firebase</span>
+            </div>
+            <div class="project-links">
+                <a href="#" class="project-link primary" data-ru="Демо" data-en="Demo" data-de="Demo" data-uk="Демо">Демо</a>
+                <a href="https://github.com/M5rkn/dashboard" target="_blank" class="project-link secondary">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                    GitHub
+                </a>
+            </div>
+        </div>
+
+        <!-- Проект 4 - Web -->
+        <div class="project-card" data-category="web">
+            <div class="project-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                </svg>
+            </div>
+            <h3 data-ru="Чат-приложение" data-en="Chat Application" data-de="Chat-Anwendung" data-uk="Чат-додаток">Чат-приложение</h3>
+            <p data-ru="Веб-чат в реальном времени с поддержкой комнат, файлов и эмодзи." data-en="Real-time web chat with support for rooms, files, and emojis." data-de="Echtzeit-Webchat mit Unterstützung für Räume, Dateien und Emojis." data-uk="Веб-чат у реальному часі з підтримкою кімнат, файлів та емодзі.">Веб-чат в реальном времени с поддержкой комнат, файлов и эмодзи.</p>
+            <div class="project-section">
+                <div class="project-section-title" data-ru="Idea" data-en="Idea" data-de="Idee" data-uk="Ідея">Idea</div>
+                <div class="project-section-text" data-ru="Реализовать мгновенный обмен сообщениями между пользователями с дополнительными функциями" data-en="Implement instant messaging between users with additional features" data-de="Sofortige Nachrichtenübermittlung zwischen Benutzern mit zusätzlichen Funktionen implementieren" data-uk="Реалізувати миттєвий обмін повідомленнями між користувачами з додатковими функціями">Реализовать мгновенный обмен сообщениями между пользователями с дополнительными функциями</div>
+            </div>
+            <div class="project-section">
+                <div class="project-section-title" data-ru="Tech Stack" data-en="Tech Stack" data-de="Tech Stack" data-uk="Tech Stack">Tech Stack</div>
+                <div class="project-section-text" data-ru="Node.js, Socket.io, Express, MongoDB" data-en="Node.js, Socket.io, Express, MongoDB" data-de="Node.js, Socket.io, Express, MongoDB" data-uk="Node.js, Socket.io, Express, MongoDB">Node.js, Socket.io, Express, MongoDB</div>
+            </div>
+            <div class="project-tags">
+                <span class="tag" data-ru="Node.js" data-en="Node.js" data-de="Node.js" data-uk="Node.js">Node.js</span>
+                <span class="tag" data-ru="Socket.io" data-en="Socket.io" data-de="Socket.io" data-uk="Socket.io">Socket.io</span>
+                <span class="tag" data-ru="Express" data-en="Express" data-de="Express" data-uk="Express">Express</span>
+            </div>
+            <div class="project-links">
+                <a href="#" class="project-link primary" data-ru="Демо" data-en="Demo" data-de="Demo" data-uk="Демо">Демо</a>
+                <a href="https://github.com/M5rkn/chat" target="_blank" class="project-link secondary">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                    GitHub
+                </a>
+            </div>
+        </div>
+
+        <!-- Проект 5 - Bot -->
+        <div class="project-card" data-category="bot">
+            <div class="project-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                    <path d="M12 6v6"/>
+                    <path d="M12 18h.01"/>
+                </svg>
+            </div>
+            <h3 data-ru="Бот для заказов" data-en="Order Bot" data-de="Bestell-Bot" data-uk="Бот для замовлень">Бот для заказов</h3>
+            <p data-ru="Telegram бот для приёма заказов с меню, оплатой и уведомлениями администратора." data-en="Telegram bot for receiving orders with menu, payment, and admin notifications." data-de="Telegram-Bot zum Empfangen von Bestellungen mit Menü, Zahlung und Admin-Benachrichtigungen." data-uk="Telegram бот для прийому замовлень з меню, оплатою та сповіщеннями адміністратора.">Telegram бот для приёма заказов с меню, оплатой и уведомлениями администратора.</p>
+            <div class="project-section">
+                <div class="project-section-title" data-ru="Idea" data-en="Idea" data-de="Idee" data-uk="Ідея">Idea</div>
+                <div class="project-section-text" data-ru="Упростить процесс заказа товаров/услуг через Telegram с автоматической обработкой" data-en="Simplify the process of ordering products/services via Telegram with automatic processing" data-de="Den Bestellprozess von Produkten/Dienstleistungen über Telegram mit automatischer Verarbeitung vereinfachen" data-uk="Спростити процес замовлення товарів/послуг через Telegram з автоматичною обробкою">Упростить процесс заказа товаров/услуг через Telegram с автоматической обработкой</div>
+            </div>
+            <div class="project-section">
+                <div class="project-section-title" data-ru="Tech Stack" data-en="Tech Stack" data-de="Tech Stack" data-uk="Tech Stack">Tech Stack</div>
+                <div class="project-section-text" data-ru="Python, Aiogram, PostgreSQL, YooKassa API" data-en="Python, Aiogram, PostgreSQL, YooKassa API" data-de="Python, Aiogram, PostgreSQL, YooKassa API" data-uk="Python, Aiogram, PostgreSQL, YooKassa API">Python, Aiogram, PostgreSQL, YooKassa API</div>
+            </div>
+            <div class="project-tags">
+                <span class="tag" data-ru="Python" data-en="Python" data-de="Python" data-uk="Python">Python</span>
+                <span class="tag" data-ru="Aiogram" data-en="Aiogram" data-de="Aiogram" data-uk="Aiogram">Aiogram</span>
+                <span class="tag" data-ru="PostgreSQL" data-en="PostgreSQL" data-de="PostgreSQL" data-uk="PostgreSQL">PostgreSQL</span>
+            </div>
+            <div class="project-links">
+                <a href="#" class="project-link primary" data-ru="Демо" data-en="Demo" data-de="Demo" data-uk="Демо">Демо</a>
+                <a href="https://github.com/M5rkn/order-bot" target="_blank" class="project-link secondary">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                    GitHub
+                </a>
+            </div>
+        </div>
+
+        <!-- Проект 6 - Landing -->
+        <div class="project-card" data-category="landing">
+            <div class="project-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                    <line x1="8" y1="21" x2="16" y2="21"/>
+                    <line x1="12" y1="17" x2="12" y2="21"/>
+                </svg>
+            </div>
+            <h3 data-ru="Лендинг пейдж" data-en="Landing Page" data-de="Landing Page" data-uk="Лендінг">Лендинг пейдж</h3>
+            <p data-ru="Адаптивный лендинг с анимациями, формой заявки и интеграцией с CRM." data-en="Responsive landing page with animations, contact form, and CRM integration." data-de="Responsive Landing Page mit Animationen, Kontaktformular und CRM-Integration." data-uk="Адаптивний лендінг з анімаціями, формою заявки та інтеграцією з CRM.">Адаптивный лендинг с анимациями, формой заявки и интеграцией с CRM.</p>
+            <div class="project-section">
+                <div class="project-section-title" data-ru="Idea" data-en="Idea" data-de="Idee" data-uk="Ідея">Idea</div>
+                <div class="project-section-text" data-ru="Создать продающую страницу с высокой конверсией и плавными анимациями" data-en="Create a selling page with high conversion and smooth animations" data-de="Eine verkaufsstarke Seite mit hoher Konversion und sanften Animationen erstellen" data-uk="Створити продаючу сторінку з високою конверсією та плавними анімаціями">Создать продающую страницу с высокой конверсией и плавными анимациями</div>
+            </div>
+            <div class="project-section">
+                <div class="project-section-title" data-ru="Tech Stack" data-en="Tech Stack" data-de="Tech Stack" data-uk="Tech Stack">Tech Stack</div>
+                <div class="project-section-text" data-ru="HTML5, CSS3, JavaScript, GSAP, PHP" data-en="HTML5, CSS3, JavaScript, GSAP, PHP" data-de="HTML5, CSS3, JavaScript, GSAP, PHP" data-uk="HTML5, CSS3, JavaScript, GSAP, PHP">HTML5, CSS3, JavaScript, GSAP, PHP</div>
+            </div>
+            <div class="project-tags">
+                <span class="tag" data-ru="HTML/CSS" data-en="HTML/CSS" data-de="HTML/CSS" data-uk="HTML/CSS">HTML/CSS</span>
+                <span class="tag" data-ru="JavaScript" data-en="JavaScript" data-de="JavaScript" data-uk="JavaScript">JavaScript</span>
+                <span class="tag" data-ru="GSAP" data-en="GSAP" data-de="GSAP" data-uk="GSAP">GSAP</span>
+            </div>
+            <div class="project-links">
+                <a href="#" class="project-link primary" data-ru="Сайт" data-en="Website" data-de="Website" data-uk="Сайт">Сайт</a>
+                <a href="https://github.com/M5rkn/landing" target="_blank" class="project-link secondary">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                    GitHub
+                </a>
+            </div>
+        </div>
+
+        <!-- Проект 7 - Bot -->
+        <div class="project-card" data-category="bot">
+            <div class="project-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2 2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/>
+                    <path d="M12 14a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2z"/>
+                    <path d="M12 8a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2z"/>
+                    <rect x="3" y="4" width="18" height="16" rx="2"/>
+                </svg>
+            </div>
+            <h3 data-ru="Shop Helper Bot" data-en="Shop Helper Bot" data-de="Shop Helper Bot" data-uk="Shop Helper Bot">Shop Helper Bot</h3>
+            <p data-ru="Бот-помощник для интернет-магазина с каталогом товаров и отслеживанием заказов." data-en="Helper bot for online store with product catalog and order tracking." data-de="Helfer-Bot für Online-Shop mit Produktkatalog und Bestellverfolgung." data-uk="Бот-помічник для інтернет-магазину з каталогом товарів і відстеженням замовлень.">Бот-помощник для интернет-магазина с каталогом товаров и отслеживанием заказов.</p>
+            <div class="project-section">
+                <div class="project-section-title" data-ru="Idea" data-en="Idea" data-de="Idee" data-uk="Ідея">Idea</div>
+                <div class="project-section-text" data-ru="Предоставить покупателям удобный способ просмотра товаров и статуса заказа" data-en="Provide customers with a convenient way to browse products and track orders" data-de="Kunden eine bequeme Möglichkeit bieten, Produkte zu durchsuchen und Bestellungen zu verfolgen" data-uk="Надати покупцям зручний спосіб перегляду товарів і відстеження замовлень">Предоставить покупателям удобный способ просмотра товаров и статуса заказа</div>
+            </div>
+            <div class="project-section">
+                <div class="project-section-title" data-ru="Tech Stack" data-en="Tech Stack" data-de="Tech Stack" data-uk="Tech Stack">Tech Stack</div>
+                <div class="project-section-text" data-ru="Python, Aiogram, Redis, PostgreSQL" data-en="Python, Aiogram, Redis, PostgreSQL" data-de="Python, Aiogram, Redis, PostgreSQL" data-uk="Python, Aiogram, Redis, PostgreSQL">Python, Aiogram, Redis, PostgreSQL</div>
+            </div>
+            <div class="project-tags">
+                <span class="tag" data-ru="Python" data-en="Python" data-de="Python" data-uk="Python">Python</span>
+                <span class="tag" data-ru="Aiogram" data-en="Aiogram" data-de="Aiogram" data-uk="Aiogram">Aiogram</span>
+                <span class="tag" data-ru="Redis" data-en="Redis" data-de="Redis" data-uk="Redis">Redis</span>
+            </div>
+            <div class="project-links">
+                <a href="#" class="project-link primary" data-ru="Демо" data-en="Demo" data-de="Demo" data-uk="Демо">Демо</a>
+                <a href="https://github.com/M5rkn/shop-bot" target="_blank" class="project-link secondary">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                    GitHub
+                </a>
+            </div>
+        </div>
+
+        <!-- Проект 8 - Landing -->
+        <div class="project-card" data-category="landing">
+            <div class="project-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
+                    <path d="M2 12h20"/>
+                </svg>
+            </div>
+            <h3 data-ru="Портфолио фотографа" data-en="Photographer Portfolio" data-de="Fotograf-Portfolio" data-uk="Портфоліо фотографа">Портфолио фотографа</h3>
+            <p data-ru="Красивый лендинг с галереей работ, прайсом и формой записи на съёмку." data-en="Beautiful landing page with work gallery, pricing, and booking form." data-de="Schöne Landing Page mit Arbeitsgalerie, Preisen und Buchungsformular." data-uk="Гарний лендінг з галереєю робіт, прайсом і формою запису на зйомку.">Красивый лендинг с галереей работ, прайсом и формой записи на съёмку.</p>
+            <div class="project-section">
+                <div class="project-section-title" data-ru="Idea" data-en="Idea" data-de="Idee" data-uk="Ідея">Idea</div>
+                <div class="project-section-text" data-ru="Создать визуально привлекательное портфолио для демонстрации работ фотографа" data-en="Create a visually appealing portfolio to showcase photographer's work" data-de="Ein visuell ansprechendes Portfolio zur Präsentation der Arbeiten des Fotografen erstellen" data-uk="Створити візуально привабливе портфоліо для демонстрації робіт фотографа">Создать визуально привлекательное портфолио для демонстрации работ фотографа</div>
+            </div>
+            <div class="project-section">
+                <div class="project-section-title" data-ru="Tech Stack" data-en="Tech Stack" data-de="Tech Stack" data-uk="Tech Stack">Tech Stack</div>
+                <div class="project-section-text" data-ru="HTML5, CSS3, JavaScript, Fancybox" data-en="HTML5, CSS3, JavaScript, Fancybox" data-de="HTML5, CSS3, JavaScript, Fancybox" data-uk="HTML5, CSS3, JavaScript, Fancybox">HTML5, CSS3, JavaScript, Fancybox</div>
+            </div>
+            <div class="project-tags">
+                <span class="tag" data-ru="HTML/CSS" data-en="HTML/CSS" data-de="HTML/CSS" data-uk="HTML/CSS">HTML/CSS</span>
+                <span class="tag" data-ru="JavaScript" data-en="JavaScript" data-de="JavaScript" data-uk="JavaScript">JavaScript</span>
+                <span class="tag" data-ru="Fancybox" data-en="Fancybox" data-de="Fancybox" data-uk="Fancybox">Fancybox</span>
+            </div>
+            <div class="project-links">
+                <a href="#" class="project-link primary" data-ru="Сайт" data-en="Website" data-de="Website" data-uk="Сайт">Сайт</a>
+                <a href="https://github.com/M5rkn/photo-landing" target="_blank" class="project-link secondary">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                    GitHub
+                </a>
+            </div>
+        </div>
+
+        <!-- Проект 9 - Web -->
+        <div class="project-card" data-category="web">
+            <div class="project-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                    <line x1="16" y1="2" x2="16" y2="6"/>
+                    <line x1="8" y1="2" x2="8" y2="6"/>
+                    <line x1="3" y1="10" x2="21" y2="10"/>
+                </svg>
+            </div>
+            <h3 data-ru="Календарь событий" data-en="Event Calendar" data-de="Ereigniskalender" data-uk="Календар подій">Календарь событий</h3>
+            <p data-ru="Веб-приложение для планирования мероприятий с напоминаниями и совместным доступом." data-en="Web application for planning events with reminders and sharing." data-de="Webanwendung zur Planung von Veranstaltungen mit Erinnerungen und Freigabe." data-uk="Веб-додаток для планування заходів з нагадуваннями та спільним доступом.">Веб-приложение для планирования мероприятий с напоминаниями и совместным доступом.</p>
+            <div class="project-section">
+                <div class="project-section-title" data-ru="Idea" data-en="Idea" data-de="Idee" data-uk="Ідея">Idea</div>
+                <div class="project-section-text" data-ru="Упростить организацию мероприятий с возможностью совместного планирования" data-en="Simplify event organization with collaborative planning" data-de="Veranstaltungsorganisation mit kollaborativer Planung vereinfachen" data-uk="Спростити організацію заходів з можливістю спільного планування">Упростить организацию мероприятий с возможностью совместного планирования</div>
+            </div>
+            <div class="project-section">
+                <div class="project-section-title" data-ru="Tech Stack" data-en="Tech Stack" data-de="Tech Stack" data-uk="Tech Stack">Tech Stack</div>
+                <div class="project-section-text" data-ru="React, Firebase, Material-UI, Date-fns" data-en="React, Firebase, Material-UI, Date-fns" data-de="React, Firebase, Material-UI, Date-fns" data-uk="React, Firebase, Material-UI, Date-fns">React, Firebase, Material-UI, Date-fns</div>
+            </div>
+            <div class="project-tags">
+                <span class="tag" data-ru="React" data-en="React" data-de="React" data-uk="React">React</span>
+                <span class="tag" data-ru="Firebase" data-en="Firebase" data-de="Firebase" data-uk="Firebase">Firebase</span>
+                <span class="tag" data-ru="Material-UI" data-en="Material-UI" data-de="Material-UI" data-uk="Material-UI">Material-UI</span>
+            </div>
+            <div class="project-links">
+                <a href="#" class="project-link primary" data-ru="Демо" data-en="Demo" data-de="Demo" data-uk="Демо">Демо</a>
+                <a href="https://github.com/M5rkn/calendar" target="_blank" class="project-link secondary">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                    GitHub
+                </a>
+            </div>
+        </div>
+
+        <!-- Проект 10 - Bot -->
+        <div class="project-card" data-category="bot">
+            <div class="project-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+                </svg>
+            </div>
+            <h3 data-ru="Feedback Bot" data-en="Feedback Bot" data-de="Feedback-Bot" data-uk="Feedback Bot">Feedback Bot</h3>
+            <p data-ru="Бот для сбора обратной связи и отзывов с модерацией и статистикой." data-en="Bot for collecting feedback and reviews with moderation and statistics." data-de="Bot zum Sammeln von Feedback und Bewertungen mit Moderation und Statistiken." data-uk="Бот для збору зворотного зв'язку та відгуків з модерацією та статистикою.">Бот для сбора обратной связи и отзывов с модерацией и статистикой.</p>
+            <div class="project-section">
+                <div class="project-section-title" data-ru="Idea" data-en="Idea" data-de="Idee" data-uk="Ідея">Idea</div>
+                <div class="project-section-text" data-ru="Автоматизировать сбор отзывов от клиентов с возможностью модерации" data-en="Automate feedback collection from customers with moderation capability" data-de="Feedback-Sammlung von Kunden mit Moderationsmöglichkeit automatisieren" data-uk="Автоматизувати збір відгуків від клієнтів з можливістю модерації">Автоматизировать сбор отзывов от клиентов с возможностью модерации</div>
+            </div>
+            <div class="project-section">
+                <div class="project-section-title" data-ru="Tech Stack" data-en="Tech Stack" data-de="Tech Stack" data-uk="Tech Stack">Tech Stack</div>
+                <div class="project-section-text" data-ru="Python, Aiogram, MongoDB, Analytics API" data-en="Python, Aiogram, MongoDB, Analytics API" data-de="Python, Aiogram, MongoDB, Analytics API" data-uk="Python, Aiogram, MongoDB, Analytics API">Python, Aiogram, MongoDB, Analytics API</div>
+            </div>
+            <div class="project-tags">
+                <span class="tag" data-ru="Python" data-en="Python" data-de="Python" data-uk="Python">Python</span>
+                <span class="tag" data-ru="Aiogram" data-en="Aiogram" data-de="Aiogram" data-uk="Aiogram">Aiogram</span>
+                <span class="tag" data-ru="MongoDB" data-en="MongoDB" data-de="MongoDB" data-uk="MongoDB">MongoDB</span>
+            </div>
+            <div class="project-links">
+                <a href="#" class="project-link primary" data-ru="Демо" data-en="Demo" data-de="Demo" data-uk="Демо">Демо</a>
+                <a href="https://github.com/M5rkn/feedback-bot" target="_blank" class="project-link secondary">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                    GitHub
+                </a>
+            </div>
+        </div>
+
+        <!-- Проект 11 - Landing -->
+        <div class="project-card" data-category="landing">
+            <div class="project-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 19l7-7 3 3-7 7-3-3z"/>
+                    <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
+                    <path d="M2 2l7.586 7.586"/>
+                    <circle cx="11" cy="11" r="2"/>
+                </svg>
+            </div>
+            <h3 data-ru="Стартап лендинг" data-en="Startup Landing" data-de="Startup Landing Page" data-uk="Лендінг стартапу">Стартап лендинг</h3>
+            <p data-ru="Промо-страница для стартапа с анимациями, видео-фоном и формой раннего доступа." data-en="Promo page for startup with animations, video background, and early access form." data-de="Promo-Seite für Startup mit Animationen, Video-Hintergrund und Early-Access-Formular." data-uk="Промо-сторінка для стартапу з анімаціями, відео-фоном і формою раннього доступу.">Промо-страница для стартапа с анимациями, видео-фоном и формой раннего доступа.</p>
+            <div class="project-section">
+                <div class="project-section-title" data-ru="Idea" data-en="Idea" data-de="Idee" data-uk="Ідея">Idea</div>
+                <div class="project-section-text" data-ru="Создать эффектную презентацию стартапа для привлечения первых пользователей" data-en="Create an impressive startup presentation to attract early users" data-de="Eine beeindruckende Startup-Präsentation zur Gewinnung früher Nutzer erstellen" data-uk="Створити ефектну презентацію стартапу для залучення перших користувачів">Создать эффектную презентацию стартапа для привлечения первых пользователей</div>
+            </div>
+            <div class="project-section">
+                <div class="project-section-title" data-ru="Tech Stack" data-en="Tech Stack" data-de="Tech Stack" data-uk="Tech Stack">Tech Stack</div>
+                <div class="project-section-text" data-ru="HTML5, CSS3, JavaScript, Three.js" data-en="HTML5, CSS3, JavaScript, Three.js" data-de="HTML5, CSS3, JavaScript, Three.js" data-uk="HTML5, CSS3, JavaScript, Three.js">HTML5, CSS3, JavaScript, Three.js</div>
+            </div>
+            <div class="project-tags">
+                <span class="tag" data-ru="HTML/CSS" data-en="HTML/CSS" data-de="HTML/CSS" data-uk="HTML/CSS">HTML/CSS</span>
+                <span class="tag" data-ru="JavaScript" data-en="JavaScript" data-de="JavaScript" data-uk="JavaScript">JavaScript</span>
+                <span class="tag" data-ru="Three.js" data-en="Three.js" data-de="Three.js" data-uk="Three.js">Three.js</span>
+            </div>
+            <div class="project-links">
+                <a href="#" class="project-link primary" data-ru="Сайт" data-en="Website" data-de="Website" data-uk="Сайт">Сайт</a>
+                <a href="https://github.com/M5rkn/startup-landing" target="_blank" class="project-link secondary">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                    GitHub
+                </a>
+            </div>
+        </div>
+
+        <!-- Проект 12 - Web -->
+        <div class="project-card" data-category="web">
+            <div class="project-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                    <circle cx="9" cy="7" r="4"/>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+            </div>
+            <h3 data-ru="CRM система" data-en="CRM System" data-de="CRM-System" data-uk="CRM система">CRM система</h3>
+            <p data-ru="Веб-приложение для управления клиентами с воронкой продаж и аналитикой." data-en="Web application for customer management with sales funnel and analytics." data-de="Webanwendung zur Kundenverwaltung mit Verkaufstrichter und Analysen." data-uk="Веб-додаток для управління клієнтами з воронкою продажів та аналітикою.">Веб-приложение для управления клиентами с воронкой продаж и аналитикой.</p>
+            <div class="project-section">
+                <div class="project-section-title" data-ru="Idea" data-en="Idea" data-de="Idee" data-uk="Ідея">Idea</div>
+                <div class="project-section-text" data-ru="Предоставить бизнесу инструмент для управления клиентами и отслеживания продаж" data-en="Provide business with a tool for customer management and sales tracking" data-de="Unternehmen ein Tool zur Kundenverwaltung und Verkaufsverfolgung bereitstellen" data-uk="Надати бізнесу інструмент для управління клієнтами та відстеження продажів">Предоставить бизнесу инструмент для управления клиентами и отслеживания продаж</div>
+            </div>
+            <div class="project-section">
+                <div class="project-section-title" data-ru="Tech Stack" data-en="Tech Stack" data-de="Tech Stack" data-uk="Tech Stack">Tech Stack</div>
+                <div class="project-section-text" data-ru="Vue.js, Node.js, PostgreSQL, Chart.js" data-en="Vue.js, Node.js, PostgreSQL, Chart.js" data-de="Vue.js, Node.js, PostgreSQL, Chart.js" data-uk="Vue.js, Node.js, PostgreSQL, Chart.js">Vue.js, Node.js, PostgreSQL, Chart.js</div>
+            </div>
+            <div class="project-tags">
+                <span class="tag" data-ru="Vue.js" data-en="Vue.js" data-de="Vue.js" data-uk="Vue.js">Vue.js</span>
+                <span class="tag" data-ru="Node.js" data-en="Node.js" data-de="Node.js" data-uk="Node.js">Node.js</span>
+                <span class="tag" data-ru="PostgreSQL" data-en="PostgreSQL" data-de="PostgreSQL" data-uk="PostgreSQL">PostgreSQL</span>
+            </div>
+            <div class="project-links">
+                <a href="#" class="project-link primary" data-ru="Демо" data-en="Demo" data-de="Demo" data-uk="Демо">Демо</a>
+                <a href="https://github.com/M5rkn/crm" target="_blank" class="project-link secondary">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                    GitHub
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Горизонтальная секция с шагами -->
+    <section class="steps-section">
+        <!-- SVG градиент для иконок -->
+        <svg width="0" height="0">
+            <defs>
+                <linearGradient id="gradient-stroke" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#a855f7"/>
+                    <stop offset="100%" stop-color="#ec4899"/>
+                </linearGradient>
+            </defs>
+        </svg>
+
+        <div class="steps-wrapper">
+            <div class="steps-inner" id="stepsInner">
+                <div class="step-item">
+                    <div class="step-item-icon">
+                        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+                        </svg>
+                    </div>
+                    <div class="step-item-content">
+                        <h3 data-ru="Idea" data-en="Idea" data-de="Idee" data-uk="Ідея">Idea</h3>
+                        <p data-ru="Коллективное обсуждение для определения основной концепции и видения проекта" data-en="Collaborative brainstorming to define the core vision" data-de="Gemeinsames Brainstorming zur Definition der Kernvision" data-uk="Колективне обговорення для визначення основної концепції та бачення проєкту">Коллективное обсуждение для определения основной концепции и видения проекта</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-item-icon">
+                        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2"/>
+                            <path d="M3 9h18"/>
+                            <path d="M9 21V9"/>
+                        </svg>
+                    </div>
+                    <div class="step-item-content">
+                        <h3 data-ru="Plan" data-en="Plan" data-de="Plan" data-uk="План">Plan</h3>
+                        <p data-ru="Детальное планирование архитектуры, технологий и сроков реализации" data-en="Detailed planning of architecture, technologies and timelines" data-de="Detaillierte Planung von Architektur, Technologien und Zeitplänen" data-uk="Детальне планування архітектури, технологій і термінів реалізації">Детальное планирование архитектуры, технологий и сроков реализации</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-item-icon">
+                        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                        </svg>
+                    </div>
+                    <div class="step-item-content">
+                        <h3 data-ru="Build" data-en="Build" data-de="Build" data-uk="Створення">Build</h3>
+                        <p data-ru="Профессиональная разработка с использованием современных технологий и лучших практик" data-en="Professional development using modern technologies and best practices" data-de="Professionelle Entwicklung mit modernen Technologien und Best Practices" data-uk="Професійна розробка з використанням сучасних технологій і кращих практик">Профессиональная разработка с использованием современных технологий и лучших практик</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-item-icon">
+                        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+                            <path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+                            <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
+                            <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
+                        </svg>
+                    </div>
+                    <div class="step-item-content">
+                        <h3 data-ru="Launch" data-en="Launch" data-de="Launch" data-uk="Запуск">Launch</h3>
+                        <p data-ru="Развертывание, тестирование и запуск проекта с последующей поддержкой" data-en="Deployment, testing and launch with ongoing support" data-de="Bereitstellung, Testing und Launch mit laufender Unterstützung" data-uk="Розгортання, тестування і запуск проєкту з подальшою підтримкою">Развертывание, тестирование и запуск проекта с последующей поддержкой</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="steps-nav">
+            <div class="steps-dot active" data-index="0"></div>
+            <div class="steps-dot" data-index="1"></div>
+            <div class="steps-dot" data-index="2"></div>
+            <div class="steps-dot" data-index="3"></div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="footer-section">
+        <div class="footer-big-text">
+            <span class="big-text-item" data-text="DEVELOPER">DEVELOPER</span>
+        </div>
+        <div class="footer-content">
+            <div class="footer-social">
+                <a href="https://t.me/Marklill" target="_blank" class="social-link-footer" title="Telegram">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.16.16-.295.295-.605.295l.213-3.054 5.56-5.022c.242-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.941z"/></svg>
+                </a>
+                <a href="https://github.com/M5rkn" target="_blank" class="social-link-footer" title="GitHub">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                </a>
+            </div>
+            <div class="footer-copyright">
+                <p>© 2026 ALL RIGHTS RESERVED</p>
+                <p>Industrial Dev Portfolio</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Горизонтальная секция - автоматическая плавная прокрутка слайдов
+        const stepsInner = document.getElementById('stepsInner');
+        const stepsDots = document.querySelectorAll('.steps-dot');
+        const stepsSection = document.querySelector('.steps-section');
+
+        const totalSlides = 4;
+        let currentSlide = 0;
+        let autoScrollTimeout;
+        let isTransitioning = false;
+
+        // Плавная прокрутка к слайду
+        function smoothScrollToSlide(targetSlide) {
+            if (isTransitioning) return;
+            isTransitioning = true;
+
+            const startPosition = currentSlide * window.innerWidth;
+            const endPosition = targetSlide * window.innerWidth;
+            const distance = endPosition - startPosition;
+            const duration = 800;
+            let startTime = null;
+
+            function animate(currentTime) {
+                if (startTime === null) startTime = currentTime;
+                const timeElapsed = currentTime - startTime;
+                const progress = Math.min(timeElapsed / duration, 1);
+                
+                // Easing function (easeInOutCubic)
+                const ease = progress < 0.5
+                    ? 4 * progress * progress * progress
+                    : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
+                stepsInner.style.transform = `translateX(${-startPosition - distance * ease}px)`;
+
+                if (timeElapsed < duration) {
+                    requestAnimationFrame(animate);
+                } else {
+                    currentSlide = targetSlide;
+                    isTransitioning = false;
+                    stepsDots.forEach((dot, index) => {
+                        dot.classList.toggle('active', index === currentSlide);
+                    });
+                }
+            }
+            requestAnimationFrame(animate);
+        }
+
+        // Автоматическая прокрутка слайдов
+        function autoScroll() {
+            if (isTransitioning) {
+                autoScrollTimeout = setTimeout(autoScroll, 100);
+                return;
+            }
+            
+            if (currentSlide < totalSlides - 1) {
+                smoothScrollToSlide(currentSlide + 1);
+                autoScrollTimeout = setTimeout(autoScroll, 4000);
+            } else {
+                // Возврат к первому слайду
+                setTimeout(() => {
+                    currentSlide = -1;
+                    smoothScrollToSlide(0);
+                    autoScrollTimeout = setTimeout(autoScroll, 4000);
+                }, 2000);
+            }
+        }
+
+        // Запуск автоматической прокрутки когда секция видна
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    currentSlide = 0;
+                    clearTimeout(autoScrollTimeout);
+                    stepsInner.style.transform = `translateX(0px)`;
+                    stepsDots.forEach((dot, index) => {
+                        dot.classList.toggle('active', index === currentSlide);
+                    });
+                    setTimeout(autoScroll, 3000);
+                } else {
+                    clearTimeout(autoScrollTimeout);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        observer.observe(stepsSection);
+
+        // Клик по точкам
+        stepsDots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                if (isTransitioning) return;
+                clearTimeout(autoScrollTimeout);
+                smoothScrollToSlide(index);
+                if (index < totalSlides - 1) {
+                    setTimeout(autoScroll, 4000);
+                }
+            });
+        });
+
+        const starsContainer = document.getElementById('stars');
+        const starCount = 150;
+
+        for (let i = 0; i < starCount; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.width = Math.random() * 3 + 1 + 'px';
+            star.style.height = star.style.width;
+            star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
+            star.style.setProperty('--opacity', Math.random() * 0.5 + 0.3);
+            starsContainer.appendChild(star);
+        }
+
+        // Кастомный курсор
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorCircle = document.querySelector('.cursor-circle');
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+        let circleX = 0, circleY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animateCursor() {
+            cursorDot.style.left = mouseX + 'px';
+            cursorDot.style.top = mouseY + 'px';
+            circleX += (mouseX - circleX) * 0.15;
+            circleY += (mouseY - circleY) * 0.15;
+            cursorCircle.style.left = circleX + 'px';
+            cursorCircle.style.top = circleY + 'px';
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // След от курсора (с учётом скролла)
+        document.addEventListener('mousemove', (e) => {
+            const trail = document.createElement('div');
+            trail.className = 'cursor-trail';
+            trail.style.left = e.pageX + 'px';
+            trail.style.top = e.pageY + 'px';
+            document.body.appendChild(trail);
+            setTimeout(() => {
+                trail.remove();
+            }, 500);
+        });
+
+        const interactiveElements = document.querySelectorAll('a, button, .project-link');
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => cursorCircle.classList.add('hover'));
+            el.addEventListener('mouseleave', () => cursorCircle.classList.remove('hover'));
+        });
+
+        document.addEventListener('mousedown', () => {
+            cursorCircle.style.transform = 'translate(-50%, -50%) scale(0.8)';
+        });
+        document.addEventListener('mouseup', () => {
+            cursorCircle.style.transform = 'translate(-50%, -50%) scale(1)';
+        });
+
+        // Переключение языков
+        const langBtns = document.querySelectorAll('.lang-btn');
+        const langElements = document.querySelectorAll('[data-ru]');
+
+        langBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const lang = btn.dataset.lang;
+
+                langBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                langElements.forEach(el => {
+                    const text = el.dataset[lang];
+                    if (text) {
+                        el.textContent = text;
+                    }
+                });
+
+                localStorage.setItem('lang', lang);
+            });
+        });
+
+        const savedLang = localStorage.getItem('lang') || 'ru';
+        const savedBtn = document.querySelector(`[data-lang="${savedLang}"]`);
+        if (savedBtn) {
+            savedBtn.click();
+        }
+
+        // Фильтрация проектов
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Удаляем активный класс у всех кнопок
+                filterBtns.forEach(b => b.classList.remove('active'));
+                // Добавляем активный класс нажатой кнопке
+                btn.classList.add('active');
+
+                const filter = btn.dataset.filter;
+
+                projectCards.forEach(card => {
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        card.classList.remove('hidden');
+                        card.classList.add('fade-in');
+                    } else {
+                        card.classList.add('hidden');
+                        card.classList.remove('fade-in');
+                    }
+                });
+            });
+        });
+
+        // Parallax эффект для звёзд
+        const stars = document.getElementById('stars');
+        let starX = 0, starY = 0;
+        let starTargetX = 0, starTargetY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            starTargetX = (e.clientX / window.innerWidth - 0.5) * 40;
+            starTargetY = (e.clientY / window.innerHeight - 0.5) * 40;
+        });
+
+        function animateParallax() {
+            starX += (starTargetX - starX) * 0.05;
+            starY += (starTargetY - starY) * 0.05;
+            stars.style.transform = `translate(${starX}px, ${starY}px)`;
+            requestAnimationFrame(animateParallax);
+        }
+        animateParallax();
+
+        // Lenis - плавный скролл (инициализация после DOMContentLoaded)
+        document.addEventListener('DOMContentLoaded', () => {
+            const lenis = new Lenis({
+                duration: 1.3,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                direction: 'vertical',
+                gestureDirection: 'vertical',
+                smooth: true,
+                mouseMultiplier: 0.45,
+                smoothTouch: true,
+                touchMultiplier: 1,
+                infinite: false,
+                touchInertiaMultiplier: 1,
+                wheelMultiplier: 0.45,
+                normalizeWheel: true,
+                prevent: null
+            });
+
+            function raf(time) {
+                lenis.raf(time);
+                requestAnimationFrame(raf);
+            }
+            requestAnimationFrame(raf);
+
+            // Кнопка «наверх»
+            const scrollToTopBtn = document.getElementById('scrollToTop');
+
+            lenis.on('scroll', ({ scroll }) => {
+                if (scroll > 300) {
+                    scrollToTopBtn.classList.add('visible');
+                } else {
+                    scrollToTopBtn.classList.remove('visible');
+                }
+            });
+
+            scrollToTopBtn.addEventListener('click', () => {
+                lenis.scrollTo(0, {
+                    duration: 1.5,
+                    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+                });
+            });
+
+            // Делаем lenis глобальным
+            window.lenis = window.smoothScroll = lenis;
+
+            // Анимация появления элементов при скролле
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            // Наблюдаем за проектами
+            document.querySelectorAll('.project-card').forEach((card, index) => {
+                card.classList.add('fade-in-section');
+                card.style.transitionDelay = `${index * 0.1}s`;
+                observer.observe(card);
+            });
+
+            // Плавное появление заголовков
+            document.querySelectorAll('.header h1, .header p, .filters').forEach(el => {
+                el.classList.add('fade-in-section');
+                observer.observe(el);
+            });
+
+            // Параллакс эффект для карточек при скролле (используем Lenis)
+            lenis.on('scroll', ({ scroll }) => {
+                document.querySelectorAll('.project-card').forEach((card, index) => {
+                    const cardRect = card.getBoundingClientRect();
+                    const cardTop = cardRect.top + scroll;
+                    const cardVisible = scroll + window.innerHeight > cardTop;
+                    if (cardVisible) {
+                        const parallaxOffset = (scroll - cardTop + window.innerHeight) * 0.02;
+                        card.style.transform = `translateY(${Math.min(parallaxOffset, 8)}px)`;
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
