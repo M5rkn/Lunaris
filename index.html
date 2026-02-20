@@ -37,7 +37,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     
     <!-- Lenis для плавного скролла -->
-    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.42/bundled/lenis.min.js"></script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
     
     <style>
         * {
@@ -47,20 +47,82 @@
         }
 
         html {
-            overflow: hidden;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
         }
 
         body {
             font-family: 'Inter', sans-serif;
             background: linear-gradient(135deg, #0d0d1a 0%, #1a1a2e 50%, #16213e 100%);
-            width: 100vw;
-            height: 100vh;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
             color: #fff;
             cursor: none;
+            display: block;
+        }
+
+        /* Навигация */
+        .nav-menu {
+            position: fixed;
+            top: 24px;
+            left: 24px;
+            z-index: 1000;
+            display: flex;
+            gap: 12px;
+        }
+
+        .nav-link {
+            padding: 10px 18px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: rgba(255, 255, 255, 0.7);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: rgba(168, 85, 247, 0.2);
+            border-color: rgba(168, 85, 247, 0.5);
+            color: #fff;
+        }
+
+        /* Переключатель языков */
+        .lang-switcher {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            z-index: 1000;
+            display: flex;
+            gap: 6px;
+        }
+
+        .lang-btn {
+            padding: 8px 14px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: rgba(255, 255, 255, 0.5);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .lang-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .lang-btn.active {
+            background: linear-gradient(135deg, #a855f7, #ec4899);
+            border-color: transparent;
+            color: #fff;
         }
 
         /* Кастомный курсор */
@@ -118,7 +180,6 @@
             }
         }
 
-        /* Скрываем курсор на тач-устройствах */
         @media (hover: none) and (pointer: coarse) {
             .cursor {
                 display: none;
@@ -126,40 +187,6 @@
             body {
                 cursor: auto;
             }
-        }
-
-        /* Переключатель языков */
-        .lang-switcher {
-            position: fixed;
-            top: 24px;
-            right: 24px;
-            z-index: 1000;
-            display: flex;
-            gap: 6px;
-        }
-
-        .lang-btn {
-            padding: 8px 14px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            color: rgba(255, 255, 255, 0.5);
-            font-family: 'Inter', sans-serif;
-            font-size: 0.8rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .lang-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .lang-btn.active {
-            background: linear-gradient(135deg, #a855f7, #ec4899);
-            border-color: transparent;
-            color: #fff;
         }
 
         /* Плавный скролл для всего сайта */
@@ -239,10 +266,18 @@
             text-align: center;
             max-width: 420px;
             width: 90%;
-            box-shadow: 
+            box-shadow:
                 0 25px 50px rgba(0, 0, 0, 0.3),
                 0 0 100px rgba(168, 85, 247, 0.1);
             animation: cardAppear 1s ease-out;
+        }
+
+        /* Главная секция */
+        #home {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         @keyframes cardAppear {
@@ -262,25 +297,24 @@
             width: 140px;
             height: 140px;
             margin: 0 auto 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .avatar {
             width: 100%;
             height: 100%;
             border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid rgba(168, 85, 247, 0.5);
-            animation: avatarGlow 3s ease-in-out infinite;
-            background: linear-gradient(135deg, #a855f7, #ec4899);
-        }
-
-        .avatar:not([src]), .avatar[src=""], .avatar[src*="data:image"] {
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 3rem;
             font-weight: 700;
             color: #fff;
+            border: 3px solid rgba(168, 85, 247, 0.5);
+            animation: avatarGlow 3s ease-in-out infinite;
+            background: linear-gradient(135deg, #a855f7, #ec4899);
         }
 
         @keyframes avatarGlow {
@@ -436,7 +470,187 @@
             50% { transform: translate(30px, -30px) scale(1.1); }
         }
 
+        /* Секции */
+        .section {
+            min-height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 100px 20px 80px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #a855f7, #ec4899, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 48px;
+            letter-spacing: 2px;
+            text-align: center;
+        }
+
+        /* Обо мне */
+        .about-content {
+            max-width: 900px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+
+        .skills-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .skill-category {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 20px;
+        }
+
+        .skill-category h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            padding: 6px 14px;
+            background: rgba(168, 85, 247, 0.15);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Услуги */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 32px 24px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(168, 85, 247, 0.4);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(168, 85, 247, 0.2);
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(236, 72, 153, 0.2));
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .service-icon svg {
+            width: 36px;
+            height: 36px;
+            stroke: #a855f7;
+            fill: none;
+            stroke-width: 1.5;
+        }
+
+        .service-card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 12px;
+        }
+
+        .service-card p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
         /* Адаптивность */
+        @media (max-width: 900px) {
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .nav-menu {
+                top: auto;
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: rgba(0, 0, 0, 0.5);
+                backdrop-filter: blur(10px);
+                padding: 8px 16px;
+                border-radius: 20px;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .lang-switcher {
+                top: auto;
+                bottom: 20px;
+                right: 50%;
+                transform: translateX(50%);
+                background: rgba(0, 0, 0, 0.5);
+                backdrop-filter: blur(10px);
+                padding: 8px 12px;
+                border-radius: 20px;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+        }
+
         @media (max-width: 480px) {
             .card {
                 padding: 36px 24px;
@@ -498,38 +712,137 @@
         <button class="lang-btn" data-lang="uk">UK</button>
     </div>
 
+    <!-- Навигация -->
+    <div class="nav-menu">
+        <a class="nav-link active" data-lang-ru="Главная" data-lang-en="Home" data-lang-de="Startseite" data-lang-uk="Головна" href="#home">Главная</a>
+        <a class="nav-link" data-lang-ru="Обо мне" data-lang-en="About" data-lang-de="Über mich" data-lang-uk="Про мене" href="#about">Обо мне</a>
+        <a class="nav-link" data-lang-ru="Услуги" data-lang-en="Services" data-lang-de="Dienstleistungen" data-lang-uk="Послуги" href="#services">Услуги</a>
+        <a class="nav-link" data-lang-ru="Проекты" data-lang-en="Projects" data-lang-de="Projekte" data-lang-uk="Проєкти" href="projects.html">Проекты</a>
+    </div>
+
     <!-- Кастомный курсор -->
     <div class="cursor">
         <div class="cursor-dot"></div>
         <div class="cursor-circle"></div>
     </div>
 
-    <!-- Основная карточка -->
-    <div class="card">
-        <div class="avatar-container">
-            <div class="avatar-ring"></div>
-            <img class="avatar" src="https://api.dicebear.com/9.x/avataaars/svg?seed=Lunaris&style=circle&skinColor=light&hairColor=black&hair=shortHairSidePart&facialHair=none&clothing=shirt&eyes=default&eyebrows=default&mouth=smile" alt="Lunaris Avatar">
-        </div>
+    <!-- Главная секция -->
+    <section class="section" id="home">
+        <!-- Основная карточка -->
+        <div class="card">
+            <div class="avatar-container">
+                <div class="avatar-ring"></div>
+                <div class="avatar">L</div>
+            </div>
         
-        <h1 class="name" data-ru="Lunaris" data-en="Lunaris" data-de="Lunaris" data-uk="Lunaris">Lunaris</h1>
-        <p class="tagline" data-ru="Веб-разработчик | Создаю телеграм-ботов" data-en="Web Developer | Creating Telegram Bots" data-de="Webentwickler | Erstelle Telegram-Bots" data-uk="Веб-розробник | Створюю Telegram-ботів">Веб-разработчик | Создаю телеграм-ботов</p>
+            <h1 class="name" data-lang-ru="Lunaris" data-lang-en="Lunaris" data-lang-de="Lunaris" data-lang-uk="Lunaris">Lunaris</h1>
+            <p class="tagline" data-lang-ru="Веб-разработчик | Создаю телеграм-ботов" data-lang-en="Web Developer | Creating Telegram Bots" data-de="Webentwickler | Erstelle Telegram-Bots" data-lang-uk="Веб-розробник | Створюю Telegram-ботів">Веб-разработчик | Создаю телеграм-ботов</p>
         
-        <!-- Социальные ссылки -->
-        <div class="social-links">
-            <a href="https://t.me/Marklill" class="social-link" title="Telegram">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.16.16-.295.295-.605.295l.213-3.054 5.56-5.022c.242-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.941z"/></svg>
-            </a>
-            <a href="https://github.com/M5rkn" class="social-link" title="GitHub">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-            </a>
-        </div>
+            <!-- Социальные ссылки -->
+            <div class="social-links">
+                <a href="https://t.me/Marklill" class="social-link" title="Telegram">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.16.16-.295.295-.605.295l.213-3.054 5.56-5.022c.242-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.941z"/></svg>
+                </a>
+                <a href="https://github.com/M5rkn" class="social-link" title="GitHub">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                </a>
+            </div>
         
-        <!-- Кнопки действий -->
-        <div class="actions">
-            <a href="https://t.me/Marklill" class="btn btn-primary" data-ru="Связаться со мной" data-en="Contact Me" data-de="Kontaktieren Sie mich" data-uk="Зв'язатися зі мною">Связаться со мной</a>
-            <a href="projects.html" class="btn btn-secondary" data-ru="Мои проекты" data-en="My Projects" data-de="Meine Projekte" data-uk="Мої проєкти">Мои проекты</a>
+            <!-- Кнопки действий -->
+            <div class="actions">
+                <a href="https://t.me/Marklill" class="btn btn-primary" data-lang-ru="Связаться со мной" data-lang-en="Contact Me" data-lang-de="Kontaktieren Sie mich" data-lang-uk="Зв'язатися зі мною">Связаться со мной</a>
+                <a href="projects.html" class="btn btn-secondary" data-lang-ru="Мои проекты" data-lang-en="My Projects" data-lang-de="Meine Projekte" data-lang-uk="Мої проєкти">Мои проекты</a>
+            </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Секция Обо мне -->
+    <section class="section" id="about">
+        <h2 class="section-title" data-lang-ru="Обо мне" data-lang-en="About Me" data-lang-de="Über mich" data-lang-uk="Про мене">Обо мне</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p data-lang-ru="Привет! Я Lunaris, веб-разработчик. Занимаюсь созданием современных веб-приложений и Telegram-ботов. Превращаю сложные задачи в простые и удобные решения." data-lang-en="Hi! I'm Lunaris, a web developer. I create modern web applications and Telegram bots. I turn complex tasks into simple and user-friendly solutions." data-lang-de="Hallo! Ich bin Lunaris, ein Webentwickler. Ich entwickle moderne Webanwendungen und Telegram-Bots. Ich verwandle komplexe Aufgaben in einfache und benutzerfreundliche Lösungen." data-lang-uk="Привіт! Я Lunaris, веб-розробник. Займаюся створенням сучасних веб-додатків і Telegram-ботів. Перетворюю складні завдання на прості та зручні рішення.">Привет! Я Lunaris, веб-разработчик. Занимаюсь созданием современных веб-приложений и Telegram-ботов. Превращаю сложные задачи в простые и удобные решения.</p>
+                <p data-lang-ru="Постоянно изучаю новые технологии и совершенствую свои навыки. Считаю, что чистый код и внимание к деталям — основа любого успешного проекта." data-lang-en="I constantly learn new technologies and improve my skills. I believe that clean code and attention to detail are the foundation of any successful project." data-lang-de="Ich lerne ständig neue Technologien und verbessere meine Fähigkeiten. Ich glaube, dass sauberer Code und Liebe zum Detail die Grundlage jedes erfolgreichen Projekts sind." data-lang-uk="Постійно вивчаю нові технології та вдосконалюю свої навички. Вважаю, що чистий код і увага до деталей — основа будь-якого успішного проєкту.">Постоянно изучаю новые технологии и совершенствую свои навыки. Считаю, что чистый код и внимание к деталям — основа любого успешного проекта.</p>
+            </div>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h4 data-lang-ru="Frontend" data-lang-en="Frontend" data-lang-de="Frontend" data-lang-uk="Frontend">Frontend</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">HTML/CSS</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">TypeScript</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h4 data-lang-ru="Backend" data-lang-en="Backend" data-lang-de="Backend" data-lang-uk="Backend">Backend</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">Express</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h4 data-lang-ru="Telegram Боты" data-lang-en="Telegram Bots" data-lang-de="Telegram-Bots" data-lang-uk="Telegram Боти">Telegram Боты</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">aiogram</span>
+                        <span class="skill-tag">node-telegram-bot-api</span>
+                        <span class="skill-tag">Bot API</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция Услуги -->
+    <section class="section" id="services">
+        <h2 class="section-title" data-lang-ru="Услуги" data-lang-en="Services" data-lang-de="Dienstleistungen" data-lang-uk="Послуги">Услуги</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                </div>
+                <h3 data-lang-ru="Веб-приложения" data-lang-en="Web Applications" data-lang-de="Webanwendungen" data-lang-uk="Веб-додатки">Веб-приложения</h3>
+                <p data-lang-ru="Разработка современных одностраничных приложений и многостраничных сайтов с адаптивным дизайном" data-lang-en="Development of modern single-page applications and multi-page websites with responsive design" data-lang-de="Entwicklung moderner Single-Page-Anwendungen und mehrseitiger Websites mit responsivem Design" data-lang-uk="Розробка сучасних односторінкових додатків і багатосторінкових сайтів з адаптивним дизайном">Разработка современных одностраничных приложений и многостраничных сайтов с адаптивным дизайном</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11c0 5.523-4.477 10-10 10S1 16.523 1 11 5.477 1 11 1s10 4.477 10 10z"/><path d="M12 7v4l3 3"/></svg>
+                </div>
+                <h3 data-lang-ru="Telegram Боты" data-lang-en="Telegram Bots" data-lang-de="Telegram-Bots" data-lang-uk="Telegram Боти">Telegram Боты</h3>
+                <p data-lang-ru="Создание ботов любой сложности: от простых информационных до полноценных интернет-магазинов" data-lang-en="Creating bots of any complexity: from simple informational to full-fledged online stores" data-lang-de="Erstellung von Bots jeder Komplexität: von einfachen Informationsbots bis hin zu vollwertigen Online-Shops" data-lang-uk="Створення ботів будь-якої складності: від простих інформаційних до повноцінних інтернет-магазинів">Создание ботов любой сложности: от простых информационных до полноценных интернет-магазинов</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+                </div>
+                <h3 data-lang-ru="Backend API" data-lang-en="Backend API" data-lang-de="Backend-API" data-lang-uk="Backend API">Backend API</h3>
+                <p data-lang-ru="Разработка серверной части приложений, REST API, работа с базами данных" data-lang-en="Development of server-side applications, REST API, database management" data-lang-de="Entwicklung serverseitiger Anwendungen, REST-API, Datenbankverwaltung" data-lang-uk="Розробка серверної частини додатків, REST API, робота з базами даних">Разработка серверной части приложений, REST API, работа с базами данных</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+                </div>
+                <h3 data-lang-ru="Лендинги" data-lang-en="Landing Pages" data-lang-de="Landing Pages" data-lang-uk="Лендінги">Лендинги</h3>
+                <p data-lang-ru="Создание продающих одностраничных сайтов с высокой конверсией" data-lang-en="Creating high-converting single-page landing websites" data-lang-de="Erstellung von konversionsstarken One-Page-Landing-Websites" data-lang-uk="Створення продажних односторінкових сайтів з високою конверсією">Создание продающих одностраничных сайтов с высокой конверсией</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+                </div>
+                <h3 data-lang-ru="Аудит и консультации" data-lang-en="Audit & Consulting" data-lang-de="Audit & Beratung" data-lang-uk="Аудит і консультації">Аудит и консультации</h3>
+                <p data-lang-ru="Проверка существующих проектов, оптимизация производительности, рекомендации по улучшению" data-lang-en="Review of existing projects, performance optimization, improvement recommendations" data-lang-de="Überprüfung bestehender Projekte, Leistungsoptimierung, Verbesserungsempfehlungen" data-lang-uk="Перевірка існуючих проєктів, оптимізація продуктивності, рекомендації щодо покращення">Проверка существующих проектов, оптимизация производительности, рекомендации по улучшению</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+                </div>
+                <h3 data-lang-ru="Интеграции" data-lang-en="Integrations" data-lang-de="Integrationen" data-lang-uk="Інтеграції">Интеграции</h3>
+                <p data-lang-ru="Подключение платежных систем, API сторонних сервисов, автоматизация процессов" data-lang-en="Payment system integration, third-party API integration, process automation" data-lang-de="Zahlungssystemintegration, Integration von Drittanbieter-APIs, Prozessautomatisierung" data-lang-uk="Підключення платіжних систем, API сторонніх сервісів, автоматизація процесів">Подключение платежных систем, API сторонних сервисов, автоматизация процессов</p>
+            </div>
+        </div>
+    </section>
 
     <script>
         // Генерация звёзд
@@ -562,22 +875,6 @@
             particle.style.animationDelay = (Math.random() * 10) + 's';
             particlesContainer.appendChild(particle);
         }
-
-        // Если аватар не загрузился — показываем инициалы
-        const avatar = document.querySelector('.avatar');
-        avatar.addEventListener('error', () => {
-            avatar.style.display = 'none';
-            const container = document.querySelector('.avatar-container');
-            const initials = document.createElement('div');
-            initials.className = 'avatar';
-            initials.style.display = 'flex';
-            initials.style.alignItems = 'center';
-            initials.style.justifyContent = 'center';
-            initials.style.fontSize = '3rem';
-            initials.style.fontWeight = '700';
-            initials.textContent = 'L';
-            container.insertBefore(initials, container.firstChild);
-        });
 
         // Кастомный курсор
         const cursorDot = document.querySelector('.cursor-dot');
@@ -636,24 +933,24 @@
 
         // Переключение языков
         const langBtns = document.querySelectorAll('.lang-btn');
-        const langElements = document.querySelectorAll('[data-ru]');
+        const langElements = document.querySelectorAll('[data-lang-ru]');
 
         langBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 const lang = btn.dataset.lang;
-                
+
                 // Обновляем активную кнопку
                 langBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
-                
+
                 // Обновляем тексты
                 langElements.forEach(el => {
-                    const text = el.dataset[lang];
+                    const text = el.dataset[`lang${lang.charAt(0).toUpperCase() + lang.slice(1)}`];
                     if (text) {
                         el.textContent = text;
                     }
                 });
-                
+
                 // Сохраняем выбор в localStorage
                 localStorage.setItem('lang', lang);
             });
@@ -686,17 +983,18 @@
 
         // Lenis - плавный скролл
         const lenis = new Lenis({
-            duration: 1.5,
+            duration: 1.4,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             direction: 'vertical',
             gestureDirection: 'vertical',
             smooth: true,
             mouseMultiplier: 0.35,
             smoothTouch: true,
-            touchMultiplier: 1.5,
+            touchMultiplier: 0.8,
             infinite: false,
-            touchInertiaMultiplier: 1.2,
-            wheelMultiplier: 0.35
+            touchInertiaMultiplier: 0.8,
+            wheelMultiplier: 0.35,
+            normalizeWheel: true
         });
 
         function raf(time) {
@@ -704,6 +1002,47 @@
             requestAnimationFrame(raf);
         }
         requestAnimationFrame(raf);
+
+        // Активная навигация при скролле
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('section.section');
+
+        function updateActiveNav() {
+            const scrollPos = window.scrollY + window.innerHeight / 3;
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                const sectionId = section.getAttribute('id');
+
+                if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === '#' + sectionId) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateActiveNav);
+
+        // Плавный скролл к секциям
+        document.querySelectorAll('.nav-link[href^="#"]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                if (targetSection) {
+                    lenis.scrollTo(targetSection, {
+                        offset: 0,
+                        duration: 1.5
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>
