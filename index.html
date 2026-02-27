@@ -34,11 +34,11 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='80' font-size='80'>🌙</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
     <!-- Lenis для плавного скролла -->
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-    
+
     <style>
         * {
             margin: 0;
@@ -46,19 +46,269 @@
             box-sizing: border-box;
         }
 
-        html {
-            scroll-behavior: smooth;
-            overflow-x: hidden;
-        }
-
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #0d0d1a 0%, #1a1a2e 50%, #16213e 100%);
+            background: #0a0a12;
             min-height: 100vh;
             overflow-x: hidden;
             color: #fff;
             cursor: none;
             display: block;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        /* Главная секция - новый дизайн */
+        #home {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            padding: 120px 80px 80px;
+            gap: 60px;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: #131320;
+            border: 1px solid #1f1f2e;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 24px;
+        }
+
+        .hero-label::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: #7c3aed;
+            border-radius: 50%;
+            animation: blink 2s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: -0.03em;
+        }
+
+        .hero-title span {
+            color: #7c3aed;
+        }
+
+        .hero-description {
+            font-size: 1.15rem;
+            color: rgba(255, 255, 255, 0.5);
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: 'Inter', sans-serif;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: #7c3aed;
+            color: #fff;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background: #6d28d9;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #fff;
+            border: 1px solid #2a2a3f;
+        }
+
+        .btn-secondary:hover {
+            background: #131320;
+            border-color: #3a3a4f;
+        }
+
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-avatar-wrapper {
+            position: relative;
+            width: 400px;
+            height: 400px;
+        }
+
+        .hero-avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 32px;
+            background: #131320;
+            border: 1px solid #1f1f2e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-avatar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 30%, rgba(124, 58, 237, 0.15), transparent 60%);
+        }
+
+        .avatar-emoji {
+            font-size: 10rem;
+            filter: drop-shadow(0 20px 40px rgba(124, 58, 237, 0.3));
+        }
+
+        .floating-badge {
+            position: absolute;
+            background: #131320;
+            border: 1px solid #1f1f2e;
+            border-radius: 16px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .floating-badge.badge-1 {
+            top: 40px;
+            right: -20px;
+        }
+
+        .floating-badge.badge-2 {
+            bottom: 60px;
+            left: -40px;
+            animation-delay: -2s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .badge-icon {
+            width: 40px;
+            height: 40px;
+            background: #1a1a2e;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .badge-icon svg {
+            width: 20px;
+            height: 20px;
+            stroke: #a78bfa;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        .badge-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .badge-text span:first-child {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .badge-text span:last-child {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .hero-social {
+            display: flex;
+            gap: 12px;
+            margin-top: 40px;
+        }
+
+        .social-link {
+            width: 48px;
+            height: 48px;
+            background: #131320;
+            border: 1px solid #1f1f2e;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: #1a1a2e;
+            border-color: #7c3aed;
+            color: #fff;
+            transform: translateY(-3px);
+        }
+
+        /* Декоративная сетка */
+        .grid-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(124, 58, 237, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(124, 58, 237, 0.03) 1px, transparent 1px);
+            background-size: 80px 80px;
+            pointer-events: none;
+            z-index: 0;
+            mask-image: radial-gradient(ellipse at center, black 20%, transparent 70%);
         }
 
         /* Навигация */
@@ -120,7 +370,7 @@
         }
 
         .lang-btn.active {
-            background: linear-gradient(135deg, #a855f7, #ec4899);
+            background: #7c3aed;
             border-color: transparent;
             color: #fff;
         }
@@ -235,7 +485,7 @@
             position: absolute;
             width: 4px;
             height: 4px;
-            background: linear-gradient(135deg, #a855f7, #ec4899);
+            background: #7c3aed;
             border-radius: 50%;
             animation: float var(--float-duration) ease-in-out infinite;
             opacity: 0.6;
@@ -254,222 +504,6 @@
             }
         }
 
-        /* Основная карточка */
-        .card {
-            position: relative;
-            z-index: 10;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-            padding: 48px 40px;
-            text-align: center;
-            max-width: 420px;
-            width: 90%;
-            box-shadow:
-                0 25px 50px rgba(0, 0, 0, 0.3),
-                0 0 100px rgba(168, 85, 247, 0.1);
-            animation: cardAppear 1s ease-out;
-        }
-
-        /* Главная секция */
-        #home {
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        @keyframes cardAppear {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Аватар */
-        .avatar-container {
-            position: relative;
-            width: 140px;
-            height: 140px;
-            margin: 0 auto 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .avatar {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            font-weight: 700;
-            color: #fff;
-            border: 3px solid rgba(168, 85, 247, 0.5);
-            animation: avatarGlow 3s ease-in-out infinite;
-            background: linear-gradient(135deg, #a855f7, #ec4899);
-        }
-
-        @keyframes avatarGlow {
-            0%, 100% { 
-                box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
-                border-color: rgba(168, 85, 247, 0.5);
-            }
-            50% { 
-                box-shadow: 0 0 40px rgba(168, 85, 247, 0.8);
-                border-color: rgba(168, 85, 247, 0.8);
-            }
-        }
-
-        .avatar-ring {
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            border: 2px solid transparent;
-            border-top-color: #a855f7;
-            border-right-color: #ec4899;
-            border-radius: 50%;
-            animation: spin 3s linear infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* Имя и описание */
-        .name {
-            font-size: 2.2rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #a855f7, #ec4899, #06b6d4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 8px;
-            letter-spacing: 2px;
-        }
-
-        .tagline {
-            font-size: 0.95rem;
-            color: rgba(255, 255, 255, 0.6);
-            font-weight: 300;
-            margin-bottom: 32px;
-            line-height: 1.6;
-        }
-
-        /* Социальные ссылки */
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .social-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 48px;
-            height: 48px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 1.2rem;
-        }
-
-        .social-link:hover {
-            background: rgba(168, 85, 247, 0.2);
-            border-color: #a855f7;
-            color: #fff;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.3);
-        }
-
-        /* Кнопки действий */
-        .actions {
-            margin-top: 32px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .btn {
-            padding: 14px 28px;
-            border: none;
-            border-radius: 12px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #a855f7, #ec4899);
-            color: #fff;
-            box-shadow: 0 4px 20px rgba(168, 85, 247, 0.4);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px rgba(168, 85, 247, 0.6);
-        }
-
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.05);
-            color: #fff;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.4);
-        }
-
-        /* Декоративные элементы */
-        .glow-orb {
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(80px);
-            z-index: 0;
-            opacity: 0.4;
-            animation: orbFloat 8s ease-in-out infinite;
-        }
-
-        .glow-orb-1 {
-            width: 300px;
-            height: 300px;
-            background: #a855f7;
-            top: -100px;
-            right: -100px;
-        }
-
-        .glow-orb-2 {
-            width: 250px;
-            height: 250px;
-            background: #ec4899;
-            bottom: -80px;
-            left: -80px;
-            animation-delay: -4s;
-        }
-
-        @keyframes orbFloat {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(30px, -30px) scale(1.1); }
-        }
-
         /* Секции */
         .section {
             min-height: 100vh;
@@ -486,10 +520,7 @@
         .section-title {
             font-size: 2.5rem;
             font-weight: 700;
-            background: linear-gradient(135deg, #a855f7, #ec4899, #06b6d4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #a78bfa;
             margin-bottom: 48px;
             letter-spacing: 2px;
             text-align: center;
@@ -497,119 +528,241 @@
 
         /* Обо мне */
         .about-content {
-            max-width: 900px;
+            max-width: 1100px;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            gap: 100px;
             align-items: center;
         }
 
         .about-text p {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 1.05rem;
-            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.1rem;
+            line-height: 1.9;
             margin-bottom: 24px;
         }
 
-        .skills-container {
-            display: flex;
-            flex-direction: column;
+        .about-highlight {
+            position: relative;
+            padding: 32px;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.08), rgba(147, 51, 234, 0.05));
+            border: 1px solid rgba(124, 58, 237, 0.15);
+            border-radius: 20px;
+            margin-bottom: 32px;
+        }
+
+        .about-highlight p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.15rem;
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
             gap: 20px;
+            margin-bottom: 32px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 24px 20px;
+            background: #131320;
+            border: 1px solid #1f1f2e;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            border-color: rgba(124, 58, 237, 0.4);
+            background: #161625;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #a78bfa;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
         }
 
         .skill-category {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 16px;
+            background: #131320;
+            border: 1px solid #1f1f2e;
+            border-radius: 12px;
             padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            border-color: rgba(124, 58, 237, 0.4);
+            background: #161625;
+            transform: translateY(-2px);
         }
 
         .skill-category h4 {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             font-weight: 600;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 12px;
-            letter-spacing: 1px;
+            color: #a78bfa;
+            margin-bottom: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
         }
 
         .skill-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 6px;
         }
 
         .skill-tag {
-            padding: 6px 14px;
-            background: rgba(168, 85, 247, 0.15);
-            border: 1px solid rgba(168, 85, 247, 0.3);
-            border-radius: 20px;
-            font-size: 0.8rem;
+            padding: 5px 10px;
+            background: #1f1f2e;
+            border: 1px solid #2a2a3f;
+            border-radius: 6px;
+            font-size: 0.75rem;
             font-weight: 500;
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(255, 255, 255, 0.7);
+            transition: all 0.2s ease;
+        }
+
+        .skill-tag:hover {
+            background: #252538;
+            border-color: rgba(124, 58, 237, 0.5);
+            color: #fff;
         }
 
         /* Услуги */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
+            gap: 1px;
             max-width: 1100px;
             width: 100%;
+            background: rgba(124, 58, 237, 0.1);
+            border: 1px solid rgba(124, 58, 237, 0.1);
+            border-radius: 16px;
+            overflow: hidden;
         }
 
         .service-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
-            padding: 32px 24px;
-            text-align: center;
-            transition: all 0.3s ease;
+            background: #0f0f1a;
+            padding: 40px 32px;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #7c3aed, transparent);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
         }
 
         .service-card:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(168, 85, 247, 0.4);
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(168, 85, 247, 0.2);
+            background: #131320;
         }
 
         .service-icon {
-            width: 70px;
-            height: 70px;
-            margin: 0 auto 20px;
-            background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(236, 72, 153, 0.2));
-            border-radius: 18px;
+            width: 56px;
+            height: 56px;
+            margin-bottom: 24px;
             display: flex;
             align-items: center;
             justify-content: center;
+            background: rgba(124, 58, 237, 0.08);
+            border-radius: 14px;
         }
 
         .service-icon svg {
-            width: 36px;
-            height: 36px;
-            stroke: #a855f7;
+            width: 28px;
+            height: 28px;
+            stroke: #a78bfa;
             fill: none;
             stroke-width: 1.5;
         }
 
         .service-card h3 {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             font-weight: 600;
             color: #fff;
             margin-bottom: 12px;
+            letter-spacing: -0.02em;
         }
 
         .service-card p {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.9rem;
-            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.925rem;
+            line-height: 1.7;
         }
 
         /* Адаптивность */
         @media (max-width: 900px) {
-            .about-content {
+            #home {
                 grid-template-columns: 1fr;
-                gap: 40px;
+                padding: 100px 40px 60px;
+                text-align: center;
+            }
+
+            .hero-content {
+                max-width: 100%;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-social {
+                justify-content: center;
+            }
+
+            .hero-avatar-wrapper {
+                width: 300px;
+                height: 300px;
+            }
+
+            .avatar-emoji {
+                font-size: 7rem;
+            }
+
+            .floating-badge {
+                padding: 12px 16px;
+            }
+
+            .badge-icon {
+                width: 32px;
+                height: 32px;
+            }
+
+            .badge-text span:last-child {
+                font-size: 0.85rem;
+            }
+
+            .about-content {
+                gap: 60px;
             }
 
             .services-grid {
@@ -620,6 +773,60 @@
         @media (max-width: 768px) {
             .nav-menu {
                 display: none;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+            }
+
+            .hero-avatar-wrapper {
+                width: 240px;
+                height: 240px;
+            }
+
+            .avatar-emoji {
+                font-size: 5rem;
+            }
+
+            .floating-badge {
+                display: none;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .about-highlight {
+                padding: 24px;
+                margin-bottom: 24px;
+            }
+
+            .about-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+                margin-bottom: 24px;
+            }
+
+            .stat-item {
+                padding: 16px 12px;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .skills-container {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .skill-category {
+                padding: 18px;
             }
 
             .services-grid {
@@ -644,29 +851,103 @@
         }
 
         @media (max-width: 480px) {
-            .card {
-                padding: 36px 24px;
+            #home {
+                padding: 80px 20px 40px;
             }
 
-            .name {
-                font-size: 1.8rem;
+            .hero-label {
+                padding: 6px 12px;
+                font-size: 0.75rem;
             }
 
-            .avatar-container {
-                width: 120px;
-                height: 120px;
+            .hero-title {
+                font-size: 2rem;
             }
 
-            .lang-switcher {
-                top: auto;
-                bottom: 20px;
-                right: 50%;
-                transform: translateX(50%);
-                background: rgba(0, 0, 0, 0.5);
-                backdrop-filter: blur(10px);
-                padding: 8px 12px;
-                border-radius: 20px;
-                border: 1px solid rgba(255, 255, 255, 0.1);
+            .hero-description {
+                font-size: 0.95rem;
+                margin-bottom: 24px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+                padding: 14px 24px;
+                font-size: 0.95rem;
+            }
+
+            .hero-social {
+                margin-top: 24px;
+            }
+
+            .hero-social .social-link {
+                width: 44px;
+                height: 44px;
+            }
+
+            .hero-avatar-wrapper {
+                width: 200px;
+                height: 200px;
+                margin: 0 auto;
+            }
+
+            .avatar-emoji {
+                font-size: 4rem;
+            }
+
+            .floating-badge {
+                display: none;
+            }
+
+            .about-content {
+                padding: 0 16px;
+            }
+
+            .about-highlight {
+                padding: 20px;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+
+            .stat-item {
+                padding: 12px 8px;
+            }
+
+            .stat-number {
+                font-size: 1.75rem;
+            }
+
+            .stat-label {
+                font-size: 0.75rem;
+            }
+
+            .skill-category {
+                padding: 16px;
+            }
+
+            .services-grid {
+                gap: 16px;
+            }
+
+            .service-card {
+                padding: 24px 20px;
+            }
+
+            /* Курсор отключаем на мобильных */
+            .cursor {
+                display: none;
+            }
+
+            body {
+                cursor: auto;
             }
         }
 
@@ -684,17 +965,96 @@
             }
         }
 
-        .card {
-            animation: fadeInUp 0.8s ease forwards;
+        /* Плавное появление при скролле */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .fade-in-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Пульсация иконок */
+        .badge-icon svg {
+            animation: iconPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes iconPulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        /* Эффект печатной машинки */
+        .typewriter-text {
+            display: inline;
+        }
+
+        @media (max-width: 768px) {
+            .typewriter-text {
+                border-right: none !important;
+                animation: none !important;
+                white-space: normal !important;
+            }
+        }
+
+        .typewriter {
+            overflow: hidden;
+            border-right: 3px solid #7c3aed;
+            white-space: nowrap;
+            animation: typing 3.5s steps(30) forwards, blink 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+
+        /* Магнитные кнопки */
+        .magnetic-btn {
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* Пасхалка — луна */
+        .moon-click-effect {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            animation: moonClick 1s ease-out forwards;
+        }
+
+        @keyframes moonClick {
+            0% {
+                transform: translate(-50%, -50%) scale(0.5);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(2);
+                opacity: 0;
+            }
+        }
+
+        .moon-party {
+            animation: moonParty 0.5s ease-in-out infinite;
+        }
+
+        @keyframes moonParty {
+            0%, 100% { transform: rotate(-10deg) scale(1); }
+            50% { transform: rotate(10deg) scale(1.1); }
         }
     </style>
 </head>
 <body>
     <!-- Фоновые эффекты -->
+    <div class="grid-bg"></div>
     <div class="stars" id="stars"></div>
     <div class="particles" id="particles"></div>
-    <div class="glow-orb glow-orb-1"></div>
-    <div class="glow-orb glow-orb-2"></div>
 
     <!-- Переключатель языков -->
     <div class="lang-switcher">
@@ -719,68 +1079,111 @@
     </div>
 
     <!-- Главная секция -->
-    <section class="section" id="home">
-        <!-- Основная карточка -->
-        <div class="card">
-            <div class="avatar-container">
-                <div class="avatar-ring"></div>
-                <div class="avatar">L</div>
+    <section id="home">
+        <div class="hero-content">
+            <div class="hero-label">
+                <span data-lang-ru="Доступен для работы" data-lang-en="Available for work" data-lang-de="Verfügbar für Arbeit" data-lang-uk="Доступний для роботи">Доступен для работы</span>
             </div>
-        
-            <h1 class="name" data-lang-ru="Lunaris" data-lang-en="Lunaris" data-lang-de="Lunaris" data-lang-uk="Lunaris">Lunaris</h1>
-            <p class="tagline" data-lang-ru="Веб-разработчик | Создаю телеграм-ботов" data-lang-en="Web Developer | Creating Telegram Bots" data-de="Webentwickler | Erstelle Telegram-Bots" data-lang-uk="Веб-розробник | Створюю Telegram-ботів">Веб-разработчик | Создаю телеграм-ботов</p>
-        
-            <!-- Социальные ссылки -->
-            <div class="social-links">
-                <a href="https://t.me/Marklill" class="social-link" title="Telegram">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.16.16-.295.295-.605.295l.213-3.054 5.56-5.022c.242-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.941z"/></svg>
+            <h1 class="hero-title"><span class="typewriter-text" data-lang-ru="Привет, я <span>Lunaris</span>" data-lang-en="Hi, I'm <span>Lunaris</span>" data-lang-de="Hallo, ich bin <span>Lunaris</span>" data-lang-uk="Привіт, я <span>Lunaris</span>">Привет, я <span>Lunaris</span></span></h1>
+            <p class="hero-description fade-in-section" data-lang-ru="Веб-разработчик, создаю современные веб-приложения и Telegram-ботов. Превращаю сложные задачи в простые и элегантные решения." data-lang-en="Web developer creating modern web applications and Telegram bots. I turn complex tasks into simple and elegant solutions." data-lang-de="Webentwickler, der moderne Webanwendungen und Telegram-Bots erstellt. Ich verwandle komplexe Aufgaben in einfache und elegante Lösungen." data-lang-uk="Веб-розробник, створюю сучасні веб-додатки і Telegram-ботів. Перетворюю складні завдання на прості та елегантні рішення.">Веб-разработчик, создаю современные веб-приложения и Telegram-ботов. Превращаю сложные задачи в простые и элегантные решения.</p>
+            <div class="hero-buttons fade-in-section">
+                <a href="https://t.me/Marklill" class="btn btn-primary magnetic-btn">
+                    <span data-lang-ru="Связаться со мной" data-lang-en="Contact Me" data-lang-de="Kontaktieren" data-lang-uk="Зв'язатися">Связаться со мной</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>
-                <a href="https://github.com/M5rkn" class="social-link" title="GitHub">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                <a href="projects.html" class="btn btn-secondary magnetic-btn" data-lang-ru="Мои проекты" data-lang-en="My Projects" data-lang-de="Meine Projekte" data-lang-uk="Мої проєкти">Мои проекты</a>
+            </div>
+            <div class="hero-social fade-in-section">
+                <a href="https://t.me/Marklill" class="social-link magnetic-btn" title="Telegram">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.16.16-.295.295-.605.295l.213-3.054 5.56-5.022c.242-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.941z"/></svg>
+                </a>
+                <a href="https://github.com/M5rkn" class="social-link magnetic-btn" title="GitHub">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                 </a>
             </div>
-        
-            <!-- Кнопки действий -->
-            <div class="actions">
-                <a href="https://t.me/Marklill" class="btn btn-primary" data-lang-ru="Связаться со мной" data-lang-en="Contact Me" data-lang-de="Kontaktieren Sie mich" data-lang-uk="Зв'язатися зі мною">Связаться со мной</a>
-                <a href="projects.html" class="btn btn-secondary" data-lang-ru="Мои проекты" data-lang-en="My Projects" data-lang-de="Meine Projekte" data-lang-uk="Мої проєкти">Мои проекты</a>
+        </div>
+        <div class="hero-visual">
+            <div class="hero-avatar-wrapper">
+                <div class="hero-avatar moon-click-target" style="cursor: pointer;">
+                    <span class="avatar-emoji">🌙</span>
+                </div>
+                <div class="floating-badge badge-1">
+                    <div class="badge-icon">
+                        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                    </div>
+                    <div class="badge-text">
+                        <span data-lang-ru="Проектов" data-lang-en="Projects" data-lang-de="Projekte" data-lang-uk="Проєкти">Проектов</span>
+                        <span data-count="13">0</span>
+                    </div>
+                </div>
+                <div class="floating-badge badge-2">
+                    <div class="badge-icon">
+                        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+                    </div>
+                    <div class="badge-text">
+                        <span data-lang-ru="Клиентов" data-lang-en="Clients" data-lang-de="Kunden" data-lang-uk="Клієнти">Клиентов</span>
+                        <span data-count="20">0</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Секция Обо мне -->
-    <section class="section" id="about">
+    <section class="section fade-in-section" id="about">
         <h2 class="section-title" data-lang-ru="Обо мне" data-lang-en="About Me" data-lang-de="Über mich" data-lang-uk="Про мене">Обо мне</h2>
         <div class="about-content">
             <div class="about-text">
-                <p data-lang-ru="Привет! Я Lunaris, веб-разработчик. Занимаюсь созданием современных веб-приложений и Telegram-ботов. Превращаю сложные задачи в простые и удобные решения." data-lang-en="Hi! I'm Lunaris, a web developer. I create modern web applications and Telegram bots. I turn complex tasks into simple and user-friendly solutions." data-lang-de="Hallo! Ich bin Lunaris, ein Webentwickler. Ich entwickle moderne Webanwendungen und Telegram-Bots. Ich verwandle komplexe Aufgaben in einfache und benutzerfreundliche Lösungen." data-lang-uk="Привіт! Я Lunaris, веб-розробник. Займаюся створенням сучасних веб-додатків і Telegram-ботів. Перетворюю складні завдання на прості та зручні рішення.">Привет! Я Lunaris, веб-разработчик. Занимаюсь созданием современных веб-приложений и Telegram-ботов. Превращаю сложные задачи в простые и удобные решения.</p>
-                <p data-lang-ru="Постоянно изучаю новые технологии и совершенствую свои навыки. Считаю, что чистый код и внимание к деталям — основа любого успешного проекта." data-lang-en="I constantly learn new technologies and improve my skills. I believe that clean code and attention to detail are the foundation of any successful project." data-lang-de="Ich lerne ständig neue Technologien und verbessere meine Fähigkeiten. Ich glaube, dass sauberer Code und Liebe zum Detail die Grundlage jedes erfolgreichen Projekts sind." data-lang-uk="Постійно вивчаю нові технології та вдосконалюю свої навички. Вважаю, що чистий код і увага до деталей — основа будь-якого успішного проєкту.">Постоянно изучаю новые технологии и совершенствую свои навыки. Считаю, что чистый код и внимание к деталям — основа любого успешного проекта.</p>
+                <div class="about-highlight fade-in-section">
+                    <p data-lang-ru="Привет! Я Lunaris, веб-разработчик. Занимаюсь созданием современных веб-приложений и Telegram-ботов. Превращаю сложные задачи в простые и удобные решения." data-lang-en="Hi! I'm Lunaris, a web developer. I create modern web applications and Telegram bots. I turn complex tasks into simple and user-friendly solutions." data-lang-de="Hallo! Ich bin Lunaris, ein Webentwickler. Ich entwickle moderne Webanwendungen und Telegram-Bots. Ich verwandle komplexe Aufgaben in einfache und benutzerfreundliche Lösungen." data-lang-uk="Привіт! Я Lunaris, веб-розробник. Займаюся створенням сучасних веб-додатків і Telegram-ботів. Перетворюю складні завдання на прості та зручні рішення.">Привет! Я Lunaris, веб-разработчик. Занимаюсь созданием современных веб-приложений и Telegram-ботов. Превращаю сложные задачи в простые и удобные решения.</p>
+                </div>
+                <p class="fade-in-section" data-lang-ru="Постоянно изучаю новые технологии и совершенствую свои навыки. Считаю, что чистый код и внимание к деталям — основа любого успешного проекта." data-lang-en="I constantly learn new technologies and improve my skills. I believe that clean code and attention to detail are the foundation of any successful project." data-lang-de="Ich lerne ständig neue Technologien und verbessere meine Fähigkeiten. Ich glaube, dass sauberer Code und Liebe zum Detail die Grundlage jedes erfolgreichen Projekts sind." data-lang-uk="Постійно вивчаю нові технології та вдосконалюю свої навички. Вважаю, що чистий код і увага до деталей — основа будь-якого успішного проєкту.">Постоянно изучаю новые технологии и совершенствую свои навыки. Считаю, что чистый код и внимание к деталям — основа любого успешного проекта.</p>
             </div>
-            <div class="skills-container">
-                <div class="skill-category">
-                    <h4 data-lang-ru="Frontend" data-lang-en="Frontend" data-lang-de="Frontend" data-lang-uk="Frontend">Frontend</h4>
-                    <div class="skill-tags">
-                        <span class="skill-tag">HTML/CSS</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">React</span>
-                        <span class="skill-tag">TypeScript</span>
+            <div>
+                <div class="about-stats">
+                    <div class="stat-item fade-in-section">
+                        <span class="stat-number" data-count="2">0</span>
+                        <span class="stat-label" data-lang-ru="Года опыта" data-lang-en="Years Experience" data-lang-de="Jahre Erfahrung" data-lang-uk="Роки досвіду">Года опыта</span>
+                    </div>
+                    <div class="stat-item fade-in-section">
+                        <span class="stat-number" data-count="13">0</span>
+                        <span class="stat-label" data-lang-ru="Проектов" data-lang-en="Projects" data-lang-de="Projekte" data-lang-uk="Проєкти">Проектов</span>
+                    </div>
+                    <div class="stat-item fade-in-section">
+                        <span class="stat-number" data-count="20">0</span>
+                        <span class="stat-label" data-lang-ru="Клиентов" data-lang-en="Clients" data-lang-de="Kunden" data-lang-uk="Клієнти">Клиентов</span>
+                    </div>
+                    <div class="stat-item fade-in-section">
+                        <span class="stat-number" data-count="100">0</span>
+                        <span class="stat-label" data-lang-ru="Успеха" data-lang-en="Success" data-lang-de="Erfolg" data-lang-uk="Успіх">Успеха</span>
                     </div>
                 </div>
-                <div class="skill-category">
-                    <h4 data-lang-ru="Backend" data-lang-en="Backend" data-lang-de="Backend" data-lang-uk="Backend">Backend</h4>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Node.js</span>
-                        <span class="skill-tag">Express</span>
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">PostgreSQL</span>
+                <div class="skills-container">
+                    <div class="skill-category fade-in-section">
+                        <h4 data-lang-ru="Frontend" data-lang-en="Frontend" data-lang-de="Frontend" data-lang-uk="Frontend">Frontend</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">HTML/CSS</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">TypeScript</span>
+                        </div>
                     </div>
-                </div>
-                <div class="skill-category">
-                    <h4 data-lang-ru="Telegram Боты" data-lang-en="Telegram Bots" data-lang-de="Telegram-Bots" data-lang-uk="Telegram Боти">Telegram Боты</h4>
-                    <div class="skill-tags">
-                        <span class="skill-tag">aiogram</span>
-                        <span class="skill-tag">node-telegram-bot-api</span>
-                        <span class="skill-tag">Bot API</span>
+                    <div class="skill-category fade-in-section">
+                        <h4 data-lang-ru="Backend" data-lang-en="Backend" data-lang-de="Backend" data-lang-uk="Backend">Backend</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">Express</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">PostgreSQL</span>
+                        </div>
+                    </div>
+                    <div class="skill-category fade-in-section">
+                        <h4 data-lang-ru="Telegram Боты" data-lang-en="Telegram Bots" data-lang-de="Telegram-Bots" data-lang-uk="Telegram Боти">Telegram Боты</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">aiogram</span>
+                            <span class="skill-tag">node-telegram-bot-api</span>
+                            <span class="skill-tag">Bot API</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -788,45 +1191,45 @@
     </section>
 
     <!-- Секция Услуги -->
-    <section class="section" id="services">
+    <section class="section fade-in-section" id="services">
         <h2 class="section-title" data-lang-ru="Услуги" data-lang-en="Services" data-lang-de="Dienstleistungen" data-lang-uk="Послуги">Услуги</h2>
         <div class="services-grid">
-            <div class="service-card">
+            <div class="service-card fade-in-section">
                 <div class="service-icon">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
                 </div>
                 <h3 data-lang-ru="Веб-приложения" data-lang-en="Web Applications" data-lang-de="Webanwendungen" data-lang-uk="Веб-додатки">Веб-приложения</h3>
                 <p data-lang-ru="Разработка современных одностраничных приложений и многостраничных сайтов с адаптивным дизайном" data-lang-en="Development of modern single-page applications and multi-page websites with responsive design" data-lang-de="Entwicklung moderner Single-Page-Anwendungen und mehrseitiger Websites mit responsivem Design" data-lang-uk="Розробка сучасних односторінкових додатків і багатосторінкових сайтів з адаптивним дизайном">Разработка современных одностраничных приложений и многостраничных сайтов с адаптивным дизайном</p>
             </div>
-            <div class="service-card">
+            <div class="service-card fade-in-section">
                 <div class="service-icon">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11c0 5.523-4.477 10-10 10S1 16.523 1 11 5.477 1 11 1s10 4.477 10 10z"/><path d="M12 7v4l3 3"/></svg>
                 </div>
                 <h3 data-lang-ru="Telegram Боты" data-lang-en="Telegram Bots" data-lang-de="Telegram-Bots" data-lang-uk="Telegram Боти">Telegram Боты</h3>
                 <p data-lang-ru="Создание ботов любой сложности: от простых информационных до полноценных интернет-магазинов" data-lang-en="Creating bots of any complexity: from simple informational to full-fledged online stores" data-lang-de="Erstellung von Bots jeder Komplexität: von einfachen Informationsbots bis hin zu vollwertigen Online-Shops" data-lang-uk="Створення ботів будь-якої складності: від простих інформаційних до повноцінних інтернет-магазинів">Создание ботов любой сложности: от простых информационных до полноценных интернет-магазинов</p>
             </div>
-            <div class="service-card">
+            <div class="service-card fade-in-section">
                 <div class="service-icon">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
                 </div>
                 <h3 data-lang-ru="Backend API" data-lang-en="Backend API" data-lang-de="Backend-API" data-lang-uk="Backend API">Backend API</h3>
                 <p data-lang-ru="Разработка серверной части приложений, REST API, работа с базами данных" data-lang-en="Development of server-side applications, REST API, database management" data-lang-de="Entwicklung serverseitiger Anwendungen, REST-API, Datenbankverwaltung" data-lang-uk="Розробка серверної частини додатків, REST API, робота з базами даних">Разработка серверной части приложений, REST API, работа с базами данных</p>
             </div>
-            <div class="service-card">
+            <div class="service-card fade-in-section">
                 <div class="service-icon">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
                 </div>
                 <h3 data-lang-ru="Лендинги" data-lang-en="Landing Pages" data-lang-de="Landing Pages" data-lang-uk="Лендінги">Лендинги</h3>
                 <p data-lang-ru="Создание продающих одностраничных сайтов с высокой конверсией" data-lang-en="Creating high-converting single-page landing websites" data-lang-de="Erstellung von konversionsstarken One-Page-Landing-Websites" data-lang-uk="Створення продажних односторінкових сайтів з високою конверсією">Создание продающих одностраничных сайтов с высокой конверсией</p>
             </div>
-            <div class="service-card">
+            <div class="service-card fade-in-section">
                 <div class="service-icon">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
                 </div>
                 <h3 data-lang-ru="Аудит и консультации" data-lang-en="Audit & Consulting" data-lang-de="Audit & Beratung" data-lang-uk="Аудит і консультації">Аудит и консультации</h3>
                 <p data-lang-ru="Проверка существующих проектов, оптимизация производительности, рекомендации по улучшению" data-lang-en="Review of existing projects, performance optimization, improvement recommendations" data-lang-de="Überprüfung bestehender Projekte, Leistungsoptimierung, Verbesserungsempfehlungen" data-lang-uk="Перевірка існуючих проєктів, оптимізація продуктивності, рекомендації щодо покращення">Проверка существующих проектов, оптимизация производительности, рекомендации по улучшению</p>
             </div>
-            <div class="service-card">
+            <div class="service-card fade-in-section">
                 <div class="service-icon">
                     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
                 </div>
@@ -939,7 +1342,7 @@
                 langElements.forEach(el => {
                     const text = el.dataset[`lang${lang.charAt(0).toUpperCase() + lang.slice(1)}`];
                     if (text) {
-                        el.textContent = text;
+                        el.innerHTML = text;
                     }
                 });
 
@@ -1026,7 +1429,7 @@
                 e.preventDefault();
                 const targetId = link.getAttribute('href');
                 const targetSection = document.querySelector(targetId);
-                
+
                 if (targetSection) {
                     lenis.scrollTo(targetSection, {
                         offset: 0,
@@ -1035,6 +1438,143 @@
                 }
             });
         });
+
+        // === Плавное появление при скролле ===
+        const fadeInSections = document.querySelectorAll('.fade-in-section');
+        
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        fadeInSections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // === Анимация счётчиков ===
+        const counters = document.querySelectorAll('[data-count]');
+        let aboutStatsAnimated = false;
+
+        function animateCounter(el) {
+            const target = parseInt(el.dataset.count);
+            const duration = 2000;
+            const step = target / (duration / 16);
+            let current = 0;
+
+            const timer = setInterval(() => {
+                current += step;
+                if (current >= target) {
+                    el.textContent = target + (target === 100 ? '%' : target === 2 ? '+' : '+');
+                    clearInterval(timer);
+                } else {
+                    el.textContent = Math.floor(current) + (target === 100 ? '%' : '');
+                }
+            }, 16);
+        }
+
+        // Анимация счётчиков в бейджах (герой секция) — сразу при загрузке
+        const badgeCounters = document.querySelectorAll('.floating-badge [data-count]');
+        setTimeout(() => {
+            badgeCounters.forEach(counter => animateCounter(counter));
+        }, 1000);
+
+        // Анимация счётчиков в секции "Обо мне" — при скролле
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !aboutStatsAnimated) {
+                    aboutStatsAnimated = true;
+                    const aboutCounters = document.querySelectorAll('.about-stats [data-count]');
+                    aboutCounters.forEach(counter => animateCounter(counter));
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const statsSection = document.querySelector('.about-stats');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+
+        // === Магнитные кнопки ===
+        const magneticBtns = document.querySelectorAll('.magnetic-btn');
+
+        if (window.innerWidth > 768) {
+            magneticBtns.forEach(btn => {
+                btn.addEventListener('mousemove', (e) => {
+                    const rect = btn.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    
+                    btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+                });
+
+                btn.addEventListener('mouseleave', () => {
+                    btn.style.transform = 'translate(0, 0)';
+                });
+            });
+        }
+
+        // === Эффект печатной машинки ===
+        const typewriterText = document.querySelector('.typewriter-text');
+        if (typewriterText && window.innerWidth > 768) {
+            typewriterText.classList.add('typewriter');
+        }
+
+        // === Пасхалка — клик по луне ===
+        const moonTarget = document.querySelector('.moon-click-target');
+        let clickCount = 0;
+
+        if (moonTarget) {
+            moonTarget.addEventListener('click', (e) => {
+                clickCount++;
+                
+                // Создаём эффект клика
+                const clickEffect = document.createElement('div');
+                clickEffect.className = 'moon-click-effect';
+                clickEffect.innerHTML = '🌙';
+                clickEffect.style.left = e.clientX + 'px';
+                clickEffect.style.top = e.clientY + 'px';
+                clickEffect.style.fontSize = '40px';
+                document.body.appendChild(clickEffect);
+
+                setTimeout(() => clickEffect.remove(), 1000);
+
+                // После 5 кликов — вечеринка!
+                if (clickCount === 5) {
+                    moonTarget.classList.add('moon-party');
+                    
+                    // Салют из эмодзи
+                    for (let i = 0; i < 20; i++) {
+                        setTimeout(() => {
+                            const emoji = document.createElement('div');
+                            emoji.className = 'moon-click-effect';
+                            emoji.innerHTML = ['🌙', '⭐', '✨', '🎉'][Math.floor(Math.random() * 4)];
+                            emoji.style.left = (Math.random() * window.innerWidth) + 'px';
+                            emoji.style.top = (Math.random() * window.innerHeight) + 'px';
+                            emoji.style.fontSize = (Math.random() * 30 + 20) + 'px';
+                            document.body.appendChild(emoji);
+                            setTimeout(() => emoji.remove(), 1000);
+                        }, i * 100);
+                    }
+
+                    setTimeout(() => {
+                        moonTarget.classList.remove('moon-party');
+                    }, 3000);
+                }
+
+                if (clickCount > 5) {
+                    clickCount = 0;
+                }
+            });
+        }
     </script>
 </body>
 </html>
